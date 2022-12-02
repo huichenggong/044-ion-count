@@ -89,7 +89,7 @@ def ion_state_short(ion_state_chain, traj_timestep):
         else:
             state_chain.append(state_0)
             resident_time_chain.append(resident_time_tmp)
-            end_time_chain.append(i * traj_timestep)
+            end_time_chain.append((i-1) * traj_timestep)
             state_0 = state_1
             resident_time_tmp = traj_timestep
     state_chain.append(state_0)
@@ -152,6 +152,7 @@ def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep,
         matched_dict = match_seqs(ions_state, seq)
         for k in matched_dict:
             # print("K ion index", k)
+            print()
             for i in matched_dict[k][0]:
                 print("Perm:",
                       seq,
