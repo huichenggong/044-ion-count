@@ -6,6 +6,7 @@ import numpy as np
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
+        self.traj_pdb = md.load("test/03-find_SF_from_PDB/02-NaK2K/em_amber.pdb")
         self.traj_short = md.load("test/01-2POT/fix_c_10ns-pro-2POT.xtc",
                                   top="test/01-2POT/02-pro-2POT.pdb")
 
@@ -45,7 +46,7 @@ class MyTestCase(unittest.TestCase):
             ions_state_dict = count_ion.assign_ion_state_chunk("test/01-2POT/fix_c_10ns-pro-2POT.xtc",
                                                                "test/01-2POT/02-pro-2POT.pdb",
                                                                chunk=10,
-                                                               assigh_fun=count_ion.potassium_state_assign_cylider,
+                                                               assign_fun=count_ion.potassium_state_assign_cylider,
                                                                top_ind=top_ind,
                                                                bottom_ind=bottom_ind,
                                                                center_ind=top_ind + bottom_ind,
@@ -73,9 +74,10 @@ class MyTestCase(unittest.TestCase):
 
     def test_match_sequence_numpy(self):
         print("TEST: sequence match")
-        print(count_ion.match_sequence_numpy(
+        matched = count_ion.match_sequence_numpy(
             np.array([1, 2, 3, 4, 5, 6, 1, 2, 3]),
-            np.array([1, 2])))
+            np.array([1, 2]))
+        self.assertEqual(matched[0].tolist(), [0, 6])
 
     def test_ion_state_short_map(self):
         print("TEST ion_state_short_map")
@@ -102,6 +104,48 @@ class MyTestCase(unittest.TestCase):
         matched_dict = count_ion.match_seqs(ions_state, np.array([1, 2, 1], dtype=int))
         self.assertEqual(matched_dict[544][0].tolist(), [0])
         self.assertEqual(matched_dict[545][0].tolist(), [0])
+
+    def test_find_P_index(self):
+        print("TEST auto find index of P atom")
+        up_leaf_index, low_leaf_index = count_ion.find_P_index(self.traj_pdb)
+        self.assertEqual(up_leaf_index, (np.array(
+            [6238, 6372, 6506, 6640, 6774, 6908, 7042, 7176, 7310, 7444,
+             7578, 7712, 7846, 7980, 8114, 8248, 8382, 8516, 8650, 8784,
+             8918, 9052, 9186, 9320, 9454, 9588, 9722, 9856, 9990, 10124,
+             10258, 10392, 10526, 10660, 10794, 10928, 11062, 11196, 11330, 11464, 11598,
+             11732, 11866, 12000, 12134, 12268, 12402, 12536, 12670, 12804, 12938,
+             13072]) - 1).tolist())
+        self.assertEqual(low_leaf_index, (np.array(
+            [13206, 13340, 13474, 13608, 13742, 13876, 14010, 14144, 14278, 14412, 14546, 14680, 14814, 14948, 15082,
+             15216, 15350, 15484, 15618, 15752, 15886, 16020, 16154, 16288, 16422, 16556, 16690, 16824, 16958, 17092,
+             17226, 17360, 17494, 17628, 17762, 17896, 18030, 18164, 18298, 18432, 18566, 18700, 18834, 18968, 19102,
+             19236, 19370, 19504, 19638, 19772, 19906, 20040, 20174, 20308, ]) - 1).tolist())
+
+
+    def test_potassium_state_assign_membrane(self):
+        print("TEST assign state for ion inside/outside membrane")
+        traj = md.load("test/03-find_SF_from_PDB/02-NaK2K/fix_atom_c_1ns_10frame.xtc",
+                       top = "test/03-find_SF_from_PDB/02-NaK2K/em_amber.pdb")
+        up_leaf_index, low_leaf_index = count_ion.find_P_index(traj)
+        ions_state_dict = count_ion.potassium_state_assign_membrane(traj,
+                                                                    up_leaf_index,
+                                                                    low_leaf_index,
+                                                                    ion_index=[5960, 5961, 5962])
+        self.assertEqual(ions_state_dict[5960].tolist(), [2, 1, 1, 1, 3])
+        self.assertEqual(ions_state_dict[5961].tolist(), [2, 1, 1, 1, 3])
+        self.assertEqual(ions_state_dict[5962].tolist(), [2, 1, 3, 3, 3])
+
+
+    def test_match_head_tail(self):
+        ions_state = {101 : np.array([1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4]),
+                      102 : np.array([2, 3, 4, 2, 3, 4, 2, 3, 1, 2])
+                      }
+        head, tail = count_ion.match_head_tail(ions_state, np.array([1, 2]))
+        self.assertEqual(head[101], True)
+        self.assertEqual(head[102], False)
+        self.assertEqual(tail[101], False)
+        self.assertEqual(tail[102], True)
+
 
 
 if __name__ == '__main__':

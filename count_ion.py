@@ -6,6 +6,39 @@ import matplotlib.pyplot as plt
 import copy
 
 
+def potassium_state_assign_membrane(traj, top_ind, bottom_ind, ion_index):
+    """
+    :param traj: mdtraj.traj
+    :param top_ind:    atom index list
+    :param bottom_ind: atom index list
+    :return: ions_state_dict
+    #
+    #      3
+    #P#P#P#P#P#P#P#P#P#P#P#P#P#P#P# top_ind
+    #
+    #        2
+    #
+    #P#P#P#P#P#P#P#P#P#P#P#P#P#P#P# bottom_ind
+    #     1
+    #
+    """
+    # initiate ions_state_dict
+    ions_state_dict = {}
+    for k in ion_index:
+        ions_state_dict[k] = np.zeros(traj.n_frames, dtype=int) + 2
+    # check if ion is in 3
+    boundary = md.compute_center_of_mass(traj.atom_slice(top_ind))[:, 2]
+    for k in ion_index:
+        Z_Kion = traj.xyz[:, k, 2]
+        ions_state_dict[k][Z_Kion > boundary] = 3
+    # check if ion is in 1
+    boundary = md.compute_center_of_mass(traj.atom_slice(bottom_ind))[:, 2]
+    for k in ion_index:
+        Z_Kion = traj.xyz[:, k, 2]
+        ions_state_dict[k][Z_Kion < boundary] = 1
+    return ions_state_dict
+
+
 def potassium_state_assign_cylider(top_ind, bottom_ind, center_ind,
                                    traj, ion_index, rad=0.25, ):
     """
@@ -52,19 +85,19 @@ def potassium_state_assign_cylider(top_ind, bottom_ind, center_ind,
     return ions_state_dict
 
 
-def assign_ion_state_chunk(xtc_file, top, chunk, assigh_fun=potassium_state_assign_cylider, **kwargs):
+def assign_ion_state_chunk(xtc_file, top, chunk, assign_fun=potassium_state_assign_cylider, **kwargs):
     """
     :param xtc_file:
     :param top:
     :param chunk:
-    :param assigh_fun: must take traj as keyword argument
+    :param assign_fun: must take traj as keyword argument
     :param kwargs: all the keyword argument for 'assigh_fun'
     :return:
     """
     count = 0
     for traj_chunk in md.iterload(xtc_file, top=top, chunk=chunk):
         print(".", end='')
-        ions_state_dict_tmp = assigh_fun(**kwargs, traj=traj_chunk)
+        ions_state_dict_tmp = assign_fun(**kwargs, traj=traj_chunk)
         if count == 0:
             ions_state_dict = ions_state_dict_tmp
             count += 1
@@ -89,7 +122,7 @@ def ion_state_short(ion_state_chain, traj_timestep):
         else:
             state_chain.append(state_0)
             resident_time_chain.append(resident_time_tmp)
-            end_time_chain.append((i-1) * traj_timestep)
+            end_time_chain.append((i - 1) * traj_timestep)
             state_0 = state_1
             resident_time_tmp = traj_timestep
     state_chain.append(state_0)
@@ -138,8 +171,36 @@ def match_seqs(ions_state, seq):
     return matched_dict
 
 
+def match_head_tail(ions_state, seq):
+    matched_dict_head = {}
+    matched_dict_tail = {}
+    for k in ions_state:
+        i_state = ions_state[k]
+        matched_dict_head[k] = (i_state[:seq.size] == seq).all()
+        matched_dict_tail[k] = (i_state[-seq.size:] == seq).all()
+    return matched_dict_head, matched_dict_tail
+
+
 def auto_find_SF_index(traj):
     pass
+
+
+def find_P_index(traj):
+    """
+    :param traj:
+    :return: up_leaf_index, low_leaf_index # 0 base index for mdtraj
+    """
+    P_index = traj.topology.select("name P")
+    P_z = traj.atom_slice(P_index).xyz[0, :, 2]
+    middle = np.mean(P_z)
+    up_leaf_index = []
+    low_leaf_index = []
+    for p in P_index:
+        if traj.xyz[0, p, 2] > middle:
+            up_leaf_index.append(p)
+        else:
+            low_leaf_index.append(p)
+    return up_leaf_index, low_leaf_index
 
 
 def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep, voltage):
@@ -152,7 +213,7 @@ def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep,
         matched_dict = match_seqs(ions_state, seq)
         for k in matched_dict:
             # print("K ion index", k)
-            print()
+            #print()
             for i in matched_dict[k][0]:
                 print("Perm:",
                       seq,
@@ -173,7 +234,22 @@ def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep,
         print("Sequence End")
         print("###############################")
         print("")
-        count = 0
+
+
+
+
+
+seq_list_dict = {"Cylinder": [(np.array([4, 1, 3]), "proper current up"),
+                              (np.array([4, 2, 3]), "leak current up"),
+                              (np.array([3, 1, 4]), "proper current down"),
+                              (np.array([3, 2, 4]), "leak current down"),
+                              (np.array([1, 2]), "SF broken, inside-out"),
+                              (np.array([2, 1]), "SF broken, outside-in"),
+                              ],
+                 "Membrane": [(np.array([1, 2, 3]), "current up"),
+                              (np.array([3, 2, 1]), "current down")]
+                 }
+
 
 
 if __name__ == "__main__":
@@ -225,6 +301,19 @@ if __name__ == "__main__":
                         metavar="index",
                         help="1 base atom index for the bottom of the cylinder",
                         type=str)
+    parser.add_argument("-algorithm",
+                        dest="alg",
+                        choices=["Cylinder", "Membrane"],
+                        type=str,
+                        default="Cylinder",
+                        help="""Cylinder:
+    Check if the ion pass through the cylinder.
+    You need to provide the top and bottom of the cylinder
+Membrane:
+    Check if the ion pass through the Membrane.
+    The default boundary is P atom
+    """,
+                        )
 
     args = parser.parse_args()
     # read arg
@@ -239,51 +328,73 @@ if __name__ == "__main__":
     print("Ion name in this pdb should be:", K_name)
     print("The number of frame loading each time will be:", chunk)
     print("The Voltage in this simulation is: ", args.volt, "mV")
+    print("#################################################################################")
 
     traj_pdb = md.load(top)
+    # prepare time step
     for tmp in md.iterload(xtc_full_max, top=top, chunk=2):
         traj_timestep = tmp.timestep
         break
 
-    # prepare atom index
-    top_ind    = [int(i)-1 for i in args.cylTOP.split()]  # mdtraj needs 0 base index
-    bottom_ind = [int(i)-1 for i in args.cylBOT.split()]  # mdtraj needs 0 base index
-    ion_index = traj_pdb.topology.select('name ' + K_name)
-    center_ind = top_ind + bottom_ind
-    print("Number of ions found", len(ion_index))
-    print("Top of the cylinder")
-    for at in top_ind:
-        print(traj_pdb.topology.atom(at))
-    print("Bottom of the cylinder")
-    for at in bottom_ind:
-        print(traj_pdb.topology.atom(at))
-    print("#################################################################################")
+    # prepare atom index for cylinder
+    if args.alg == "Cylinder":
+        if args.cylTOP is None or args.cylBOT is None:
+            raise ValueError("Pls give -cylinderTop and -cylinderBot")
+        print("#################################################################################")
+        top_ind = [int(i) - 1 for i in args.cylTOP.split()]  # mdtraj needs 0 base index
+        bottom_ind = [int(i) - 1 for i in args.cylBOT.split()]  # mdtraj needs 0 base index
+        center_ind = top_ind + bottom_ind
+        ion_index = traj_pdb.topology.select('name ' + K_name)
+        print("Number of ions found", len(ion_index))
+        print("The ion index (0 base):", ion_index)
+        print("Top of the cylinder")
+        for at in top_ind:
+            print(traj_pdb.topology.atom(at))
+        print("Bottom of the cylinder")
+        for at in bottom_ind:
+            print(traj_pdb.topology.atom(at))
 
-    # load xtc iteratively and assign state for each ion
-    print("Assign state to each ion for each frame")
-    print("Load xtc traj chunk by chunk.", end="")
-    ions_state_dict = assign_ion_state_chunk(
-        xtc_full_max,
-        top,
-        chunk=chunk,
-        assigh_fun=potassium_state_assign_cylider,
-        top_ind=top_ind,
-        bottom_ind=bottom_ind,
-        center_ind=top_ind + bottom_ind,
-        ion_index=ion_index,
-        rad=cylinderRad
-    )
+        # load xtc iteratively and assign state for each ion
+        print("Assign state to each ion for each frame")
+        print("Load xtc traj chunk by chunk.", end="")
+        ions_state_dict = assign_ion_state_chunk(
+            xtc_full_max,
+            top,
+            chunk=chunk,
+            assign_fun=potassium_state_assign_cylider,
+            top_ind=top_ind,
+            bottom_ind=bottom_ind,
+            center_ind=top_ind + bottom_ind,
+            ion_index=ion_index,
+            rad=cylinderRad
+        )
+
+    elif args.alg == "Membrane":
+        print("#################################################################################")
+        # Find P atom index and separate them to higher/lower leaflet
+        up_leaf_index, low_leaf_index = find_P_index(traj_pdb)
+        print("The upper leaf of membrane has (0 base index):", up_leaf_index)
+        print("The lower leaf of membrane has (0 base index):", low_leaf_index)
+        ion_index = traj_pdb.topology.select('name ' + K_name)
+        print("Number of ions found", len(ion_index))
+        print("The ion index (0 base):", ion_index)
+        # load xtc iteratively and assign state for each ion
+        print("Assign state to each ion for each frame")
+        print("Load xtc traj chunk by chunk.", end="")
+        ions_state_dict = assign_ion_state_chunk(
+            xtc_full_max,
+            top,
+            chunk=chunk,
+            assign_fun=potassium_state_assign_membrane,
+            top_ind=up_leaf_index,
+            bottom_ind=low_leaf_index,
+            ion_index=ion_index,
+        )
 
     # short the ion state array and generate with resident time
     ## [000111000] > [010]
     ions_state, ions_resident_time, end_time = ion_state_short_map(ions_state_dict, traj_timestep)
 
     # find specific state sequence and print/save
-    seq_list = [(np.array([4, 1, 3]), "proper current up"),
-                (np.array([4, 2, 3]), "leak current up"),
-                (np.array([3, 1, 4]), "proper current down"),
-                (np.array([3, 2, 4]), "leak current down"),
-                (np.array([1, 2]),    "SF broken, inside-out"),
-                (np.array([2, 1]),    "SF broken, outside-in"),
-                ]
+    seq_list = seq_list_dict[args.alg]
     print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep, args.volt)
