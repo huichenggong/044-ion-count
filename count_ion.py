@@ -337,7 +337,7 @@ Membrane:
 
     traj_pdb = md.load(top)
     # prepare time step
-    for tmp in md.iterload(xtc_full_max, top=top, chunk=2):
+    for tmp in md.iterload(xtc_full_max, top=top, chunk=2, stride=args.stride):
         traj_timestep = tmp.timestep
         break
 

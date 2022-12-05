@@ -43,8 +43,9 @@ class MyTestCase(unittest.TestCase):
                       332 - 1,
                       468 - 1]
         for ion_index in [[544, 545], [545, 544]]:
-            ions_state_dict = count_ion.assign_ion_state_chunk("test/01-2POT/fix_c_10ns-pro-2POT.xtc",
-                                                               "test/01-2POT/02-pro-2POT.pdb",
+            ions_state_dict = count_ion.assign_ion_state_chunk(xtc_file="test/01-2POT/fix_c_10ns-pro-2POT.xtc",
+                                                               stride=None,
+                                                               top="test/01-2POT/02-pro-2POT.pdb",
                                                                chunk=10,
                                                                assign_fun=count_ion.potassium_state_assign_cylider,
                                                                top_ind=top_ind,
