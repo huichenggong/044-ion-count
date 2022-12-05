@@ -2,8 +2,7 @@
 import argparse
 import mdtraj as md
 import numpy as np
-import matplotlib.pyplot as plt
-import copy
+
 
 
 def potassium_state_assign_membrane(traj, top_ind, bottom_ind, ion_index):
@@ -85,7 +84,7 @@ def potassium_state_assign_cylider(top_ind, bottom_ind, center_ind,
     return ions_state_dict
 
 
-def assign_ion_state_chunk(xtc_file, top, chunk, assign_fun=potassium_state_assign_cylider, **kwargs):
+def assign_ion_state_chunk(xtc_file, stride, top, chunk, assign_fun=potassium_state_assign_cylider, **kwargs):
     """
     :param xtc_file:
     :param top:
@@ -95,7 +94,7 @@ def assign_ion_state_chunk(xtc_file, top, chunk, assign_fun=potassium_state_assi
     :return:
     """
     count = 0
-    for traj_chunk in md.iterload(xtc_file, top=top, chunk=chunk):
+    for traj_chunk in md.iterload(xtc_file, top=top, chunk=chunk, stride=stride):
         print(".", end='')
         ions_state_dict_tmp = assign_fun(**kwargs, traj=traj_chunk)
         if count == 0:
@@ -314,6 +313,12 @@ Membrane:
     The default boundary is P atom
     """,
                         )
+    parser.add_argument("-stride",
+                        dest="stride",
+                        type=int,
+                        default=None,
+                        help="Only read every stride-th frame")
+
 
     args = parser.parse_args()
     # read arg
@@ -358,8 +363,9 @@ Membrane:
         print("Assign state to each ion for each frame")
         print("Load xtc traj chunk by chunk.", end="")
         ions_state_dict = assign_ion_state_chunk(
-            xtc_full_max,
-            top,
+            xtc_file=xtc_full_max,
+            top=top,
+            stride=args.stride,
             chunk=chunk,
             assign_fun=potassium_state_assign_cylider,
             top_ind=top_ind,
@@ -382,8 +388,9 @@ Membrane:
         print("Assign state to each ion for each frame")
         print("Load xtc traj chunk by chunk.", end="")
         ions_state_dict = assign_ion_state_chunk(
-            xtc_full_max,
-            top,
+            xtc_file=xtc_full_max,
+            top=top,
+            stride=args.stride,
             chunk=chunk,
             assign_fun=potassium_state_assign_membrane,
             top_ind=up_leaf_index,
