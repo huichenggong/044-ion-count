@@ -246,9 +246,18 @@ seq_list_dict = {"Cylinder": [(np.array([4, 1, 3]), "proper current up"),
                               (np.array([3, 2, 4]), "leak current down"),
                               (np.array([1, 2]), "SF broken, inside-out"),
                               (np.array([2, 1]), "SF broken, outside-in"),
+                              (np.array([1, 3, 4]), "safety check 1 for current up"),
+                              (np.array([3, 4, 1]), "safety check 2 for current up"),
+                              (np.array([4, 3, 1]), "safety check 1 for current down"),
+                              (np.array([1, 4, 3]), "safety check 2 for current down"),
                               ],
                  "Membrane": [(np.array([1, 2, 3]), "current up"),
-                              (np.array([3, 2, 1]), "current down")]
+                              (np.array([3, 2, 1]), "current down"),
+                              (np.array([2, 3, 1]), "safety check 1 for current up"),
+                              (np.array([3, 1, 2]), "safety check 2 for current up"),
+                              (np.array([1, 3, 2]), "safety check 1 for current down"),
+                              (np.array([2, 1, 3]), "safety check 2 for current down"),
+                              ]
                  }
 
 
