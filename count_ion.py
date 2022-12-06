@@ -202,11 +202,13 @@ def find_P_index(traj):
     return up_leaf_index, low_leaf_index
 
 
-def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep, voltage):
+def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep, voltage, stride=None):
     for seq, name in seq_list:
         print("\n###############################")
         print("# New sequence start:", seq, name)
         print("#################################")
+        if stride is None:
+            stride = 1
         count = 0
         length = len(seq)
         matched_dict = match_seqs(ions_state, seq)
@@ -219,7 +221,7 @@ def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep,
                       " %5d" % (k + 1),  # 1 base index
                       "resident_time %8d %8d %8d " % tuple(ions_resident_time[k][i:i + length]),
                       "end_t %8d %8d %8d " % tuple(end_time[k][i:i + length]),
-                      "frame_num ", end_time[k][i:i + length] / traj_timestep
+                      "frame_num ", end_time[k][i:i + length] / traj_timestep * stride
                       )
                 count += 1
         current = count * 1.602176634 / end_time[k][-1] * 100000.0  # pA
@@ -333,6 +335,7 @@ Membrane:
     print("Ion name in this pdb should be:", K_name)
     print("The number of frame loading each time will be:", chunk)
     print("The Voltage in this simulation is: ", args.volt, "mV")
+    print("XTC traj will be strided:", args.stride)
     print("#################################################################################")
 
     traj_pdb = md.load(top)
@@ -404,4 +407,4 @@ Membrane:
 
     # find specific state sequence and print/save
     seq_list = seq_list_dict[args.alg]
-    print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep, args.volt)
+    print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep, args.volt, stride=args.stride)
