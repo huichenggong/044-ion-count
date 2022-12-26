@@ -263,7 +263,7 @@ seq_list_dict = {"Cylinder": [(np.array([4, 1, 3]), "proper current up"),
 
 
 if __name__ == "__main__":
-    print("This is the main")
+    #print("This is the main")
     parser = argparse.ArgumentParser()
     parser.add_argument("-pdb",
                         dest="top",
