@@ -1,0 +1,631 @@
+#################################################################################
+PDB top file: ../../../../01-EM/em.pdb
+xtc traj file: ../../001/fix_atom_c.xtc
+Ion name in this pdb should be: POT
+The number of frame loading each time will be: 1000
+The Voltage in this simulation is:  300.0 mV
+XTC traj will be strided: None
+#################################################################################
+#################################################################################
+Number of ions found 133
+The ion index (0 base): [5960 5961 5962 5963 5964 5965 5966 5967 5968 5969 5970 5971 5972 5973
+ 5974 5975 5976 5977 5978 5979 5980 5981 5982 5983 5984 5985 5986 5987
+ 5988 5989 5990 5991 5992 5993 5994 5995 5996 5997 5998 5999 6000 6001
+ 6002 6003 6004 6005 6006 6007 6008 6009 6010 6011 6012 6013 6014 6015
+ 6016 6017 6018 6019 6020 6021 6022 6023 6024 6025 6026 6027 6028 6029
+ 6030 6031 6032 6033 6034 6035 6036 6037 6038 6039 6040 6041 6042 6043
+ 6044 6045 6046 6047 6048 6049 6050 6051 6052 6053 6054 6055 6056 6057
+ 6058 6059 6060 6061 6062 6063 6064 6065 6066 6067 6068 6069 6070 6071
+ 6072 6073 6074 6075 6076 6077 6078 6079 6080 6081 6082 6083 6084 6085
+ 6086 6087 6088 6089 6090 6091 6092]
+Top of the cylinder
+TYR66-O
+TYR66-O
+TYR66-O
+TYR66-O
+Bottom of the cylinder
+THR63-OG1
+THR63-OG1
+THR63-OG1
+THR63-OG1
+Assign state to each ion for each frame
+Load xtc traj chunk by chunk............................
+
+###############################
+# New sequence start: [4 1 3] proper current up
+#################################
+Perm: [4 1 3]   5961 resident_time     1040    14120       80  end_t    30640    44760    44840  frame_num  [1532. 2238. 2242.]
+Perm: [4 1 3]   5961 resident_time      460    13000       20  end_t   388160   401160   401180  frame_num  [19408. 20058. 20059.]
+Perm: [4 1 3]   5965 resident_time      400     4660       20  end_t   120980   125640   125660  frame_num  [6049. 6282. 6283.]
+Perm: [4 1 3]   5971 resident_time       20    16700       80  end_t   221880   238580   238660  frame_num  [11094. 11929. 11933.]
+Perm: [4 1 3]   5972 resident_time     1860    10120       40  end_t    92800   102920   102960  frame_num  [4640. 5146. 5148.]
+Perm: [4 1 3]   5973 resident_time      680     8860       20  end_t    38660    47520    47540  frame_num  [1933. 2376. 2377.]
+Perm: [4 1 3]   5973 resident_time     2140    11500       40  end_t   250320   261820   261860  frame_num  [12516. 13091. 13093.]
+Perm: [4 1 3]   5974 resident_time     1120    13200      360  end_t   382300   395500   395860  frame_num  [19115. 19775. 19793.]
+Perm: [4 1 3]   5975 resident_time     1580    15220       20  end_t   395480   410700   410720  frame_num  [19774. 20535. 20536.]
+Perm: [4 1 3]   5975 resident_time     1060    11240      760  end_t   443200   454440   455200  frame_num  [22160. 22722. 22760.]
+Perm: [4 1 3]   5977 resident_time      740     8040       40  end_t   137720   145760   145800  frame_num  [6886. 7288. 7290.]
+Perm: [4 1 3]   5978 resident_time     1520     9180      260  end_t   125880   135060   135320  frame_num  [6294. 6753. 6766.]
+Perm: [4 1 3]   5978 resident_time     2960    11700       20  end_t   239360   251060   251080  frame_num  [11968. 12553. 12554.]
+Perm: [4 1 3]   5979 resident_time      660     5360     2420  end_t    60240    65600    68020  frame_num  [3012. 3280. 3401.]
+Perm: [4 1 3]   5982 resident_time      440    12440     1120  end_t    80980    93420    94540  frame_num  [4049. 4671. 4727.]
+Perm: [4 1 3]   5985 resident_time     1860     3200      120  end_t   203080   206280   206400  frame_num  [10154. 10314. 10320.]
+Perm: [4 1 3]   5985 resident_time       20    16060       20  end_t   396820   412880   412900  frame_num  [19841. 20644. 20645.]
+Perm: [4 1 3]   5986 resident_time       20    10000       20  end_t    50000    60000    60020  frame_num  [2500. 3000. 3001.]
+Perm: [4 1 3]   5987 resident_time       20    30320       40  end_t   172240   202560   202600  frame_num  [ 8612. 10128. 10130.]
+Perm: [4 1 3]   5988 resident_time     1480    19280       60  end_t   146020   165300   165360  frame_num  [7301. 8265. 8268.]
+Perm: [4 1 3]   5992 resident_time     1620    20920       20  end_t   171100   192020   192040  frame_num  [8555. 9601. 9602.]
+Perm: [4 1 3]   5992 resident_time     1820     5080       40  end_t   428180   433260   433300  frame_num  [21409. 21663. 21665.]
+Perm: [4 1 3]   5993 resident_time      980     8120      660  end_t   265580   273700   274360  frame_num  [13279. 13685. 13718.]
+Perm: [4 1 3]   5994 resident_time     1560    22600      740  end_t    94460   117060   117800  frame_num  [4723. 5853. 5890.]
+Perm: [4 1 3]   5994 resident_time       20     8500       40  end_t   259740   268240   268280  frame_num  [12987. 13412. 13414.]
+Perm: [4 1 3]   5995 resident_time     1600     5160     1620  end_t   426100   431260   432880  frame_num  [21305. 21563. 21644.]
+Perm: [4 1 3]   5996 resident_time      800    11260       60  end_t   329280   340540   340600  frame_num  [16464. 17027. 17030.]
+Perm: [4 1 3]   5996 resident_time     1440     7000       20  end_t   376380   383380   383400  frame_num  [18819. 19169. 19170.]
+Perm: [4 1 3]   5997 resident_time       20    16180       20  end_t   270040   286220   286240  frame_num  [13502. 14311. 14312.]
+Perm: [4 1 3]   6003 resident_time     1660    19120      400  end_t   183960   203080   203480  frame_num  [ 9198. 10154. 10174.]
+Perm: [4 1 3]   6005 resident_time     3560    13420       40  end_t   454420   467840   467880  frame_num  [22721. 23392. 23394.]
+Perm: [4 1 3]   6006 resident_time      660    15540       20  end_t   296520   312060   312080  frame_num  [14826. 15603. 15604.]
+Perm: [4 1 3]   6006 resident_time     1700     4720       60  end_t   424240   428960   429020  frame_num  [21212. 21448. 21451.]
+Perm: [4 1 3]   6007 resident_time     1520    11980      160  end_t   131360   143340   143500  frame_num  [6568. 7167. 7175.]
+Perm: [4 1 3]   6007 resident_time      340    24300       20  end_t   276700   301000   301020  frame_num  [13835. 15050. 15051.]
+Perm: [4 1 3]   6008 resident_time     2200     5780     1340  end_t   116280   122060   123400  frame_num  [5814. 6103. 6170.]
+Perm: [4 1 3]   6009 resident_time      900    13800       20  end_t   273700   287500   287520  frame_num  [13685. 14375. 14376.]
+Perm: [4 1 3]   6010 resident_time       20    11240       20  end_t   165380   176620   176640  frame_num  [8269. 8831. 8832.]
+Perm: [4 1 3]   6010 resident_time     4400     2920       20  end_t   431160   434080   434100  frame_num  [21558. 21704. 21705.]
+Perm: [4 1 3]   6012 resident_time      760     2760      120  end_t   202780   205540   205660  frame_num  [10139. 10277. 10283.]
+Perm: [4 1 3]   6013 resident_time     1200    11780      300  end_t   238560   250340   250640  frame_num  [11928. 12517. 12532.]
+Perm: [4 1 3]   6016 resident_time     1500     8320       40  end_t    52960    61280    61320  frame_num  [2648. 3064. 3066.]
+Perm: [4 1 3]   6017 resident_time     1160     5760       20  end_t   197800   203560   203580  frame_num  [ 9890. 10178. 10179.]
+Perm: [4 1 3]   6017 resident_time      960     9960       20  end_t   412900   422860   422880  frame_num  [20645. 21143. 21144.]
+Perm: [4 1 3]   6020 resident_time     2420     8100       20  end_t    37320    45420    45440  frame_num  [1866. 2271. 2272.]
+Perm: [4 1 3]   6020 resident_time     3100    14420       20  end_t   305620   320040   320060  frame_num  [15281. 16002. 16003.]
+Perm: [4 1 3]   6021 resident_time       20     6760       20  end_t   420740   427500   427520  frame_num  [21037. 21375. 21376.]
+Perm: [4 1 3]   6023 resident_time      520     6260      340  end_t   122060   128320   128660  frame_num  [6103. 6416. 6433.]
+Perm: [4 1 3]   6026 resident_time       20     6620       20  end_t   232700   239320   239340  frame_num  [11635. 11966. 11967.]
+Perm: [4 1 3]   6027 resident_time     1200    12500       20  end_t    15180    27680    27700  frame_num  [ 759. 1384. 1385.]
+Perm: [4 1 3]   6030 resident_time     1000     5420       20  end_t   113560   118980   119000  frame_num  [5678. 5949. 5950.]
+Perm: [4 1 3]   6030 resident_time     1220     4520       80  end_t   409920   414440   414520  frame_num  [20496. 20722. 20726.]
+Perm: [4 1 3]   6033 resident_time     1400    17200       20  end_t   339840   357040   357060  frame_num  [16992. 17852. 17853.]
+Perm: [4 1 3]   6033 resident_time     1120     8500       20  end_t   411160   419660   419680  frame_num  [20558. 20983. 20984.]
+Perm: [4 1 3]   6034 resident_time       20     5960      260  end_t   263800   269760   270020  frame_num  [13190. 13488. 13501.]
+Perm: [4 1 3]   6036 resident_time     2980    12040       40  end_t    26620    38660    38700  frame_num  [1331. 1933. 1935.]
+Perm: [4 1 3]   6038 resident_time      820     8480       20  end_t   248560   257040   257060  frame_num  [12428. 12852. 12853.]
+Perm: [4 1 3]   6041 resident_time       20     8720       60  end_t    46040    54760    54820  frame_num  [2302. 2738. 2741.]
+Perm: [4 1 3]   6041 resident_time       20    18820       20  end_t   446800   465620   465640  frame_num  [22340. 23281. 23282.]
+Perm: [4 1 3]   6042 resident_time     1180    12640       20  end_t   155820   168460   168480  frame_num  [7791. 8423. 8424.]
+Perm: [4 1 3]   6045 resident_time      380     4520      880  end_t    58520    63040    63920  frame_num  [2926. 3152. 3196.]
+Perm: [4 1 3]   6045 resident_time     1640    27640      120  end_t   209640   237280   237400  frame_num  [10482. 11864. 11870.]
+Perm: [4 1 3]   6045 resident_time     2020    18080      740  end_t   301360   319440   320180  frame_num  [15068. 15972. 16009.]
+Perm: [4 1 3]   6047 resident_time     1620    10760       20  end_t   205540   216300   216320  frame_num  [10277. 10815. 10816.]
+Perm: [4 1 3]   6048 resident_time     1220     6660       20  end_t   143340   150000   150020  frame_num  [7167. 7500. 7501.]
+Perm: [4 1 3]   6049 resident_time     1320     7660       20  end_t    44760    52420    52440  frame_num  [2238. 2621. 2622.]
+Perm: [4 1 3]   6049 resident_time      960     9860      860  end_t   378360   388220   389080  frame_num  [18918. 19411. 19454.]
+Perm: [4 1 3]   6050 resident_time      880    27220     1640  end_t    65600    92820    94460  frame_num  [3280. 4641. 4723.]
+Perm: [4 1 3]   6051 resident_time     1140     6420       20  end_t   117060   123480   123500  frame_num  [5853. 6174. 6175.]
+Perm: [4 1 3]   6054 resident_time      580     4960       20  end_t   431260   436220   436240  frame_num  [21563. 21811. 21812.]
+Perm: [4 1 3]   6055 resident_time      920    12640      760  end_t    81820    94460    95220  frame_num  [4091. 4723. 4761.]
+Perm: [4 1 3]   6055 resident_time      700     7280       40  end_t   433320   440600   440640  frame_num  [21666. 22030. 22032.]
+Perm: [4 1 3]   6056 resident_time     1260    18800      860  end_t    63020    81820    82680  frame_num  [3151. 4091. 4134.]
+Perm: [4 1 3]   6056 resident_time      560     5680     1200  end_t   203960   209640   210840  frame_num  [10198. 10482. 10542.]
+Perm: [4 1 3]   6057 resident_time      860    14120      240  end_t   368220   382340   382580  frame_num  [18411. 19117. 19129.]
+Perm: [4 1 3]   6058 resident_time     1240     7300       20  end_t   237280   244580   244600  frame_num  [11864. 12229. 12230.]
+Perm: [4 1 3]   6059 resident_time       20    14200       20  end_t    22900    37100    37120  frame_num  [1145. 1855. 1856.]
+Perm: [4 1 3]   6059 resident_time     2000     8200      340  end_t   268500   276700   277040  frame_num  [13425. 13835. 13852.]
+Perm: [4 1 3]   6059 resident_time       20    22020     1100  end_t   340620   362640   363740  frame_num  [17031. 18132. 18187.]
+Perm: [4 1 3]   6061 resident_time     1940     4320       20  end_t   339120   343440   343460  frame_num  [16956. 17172. 17173.]
+Perm: [4 1 3]   6062 resident_time      980    27840      140  end_t   466380   494220   494360  frame_num  [23319. 24711. 24718.]
+Perm: [4 1 3]   6063 resident_time     3300    11660       20  end_t   414440   426100   426120  frame_num  [20722. 21305. 21306.]
+Perm: [4 1 3]   6065 resident_time     1540    15720     1480  end_t   362640   378360   379840  frame_num  [18132. 18918. 18992.]
+Perm: [4 1 3]   6065 resident_time      540    11960      360  end_t   384860   396820   397180  frame_num  [19243. 19841. 19859.]
+Perm: [4 1 3]   6066 resident_time     1180     7480       20  end_t   123600   131080   131100  frame_num  [6180. 6554. 6555.]
+Perm: [4 1 3]   6066 resident_time     3780    15420       60  end_t   323700   339120   339180  frame_num  [16185. 16956. 16959.]
+Perm: [4 1 3]   6067 resident_time     1560     3420       20  end_t   465720   469140   469160  frame_num  [23286. 23457. 23458.]
+Perm: [4 1 3]   6068 resident_time     4840     9200       20  end_t   316560   325760   325780  frame_num  [15828. 16288. 16289.]
+Perm: [4 1 3]   6069 resident_time      320    15760      880  end_t      300    16060    16940  frame_num  [ 15. 803. 847.]
+Perm: [4 1 3]   6069 resident_time     1000    21060       40  end_t    93420   114480   114520  frame_num  [4671. 5724. 5726.]
+Perm: [4 1 3]   6069 resident_time     1640    13880       20  end_t   251120   265000   265020  frame_num  [12556. 13250. 13251.]
+Perm: [4 1 3]   6071 resident_time     1380    15140       20  end_t   351220   366360   366380  frame_num  [17561. 18318. 18319.]
+Perm: [4 1 3]   6072 resident_time     5880    13600      880  end_t   144900   158500   159380  frame_num  [7245. 7925. 7969.]
+Perm: [4 1 3]   6077 resident_time     2100     5240       20  end_t   442680   447920   447940  frame_num  [22134. 22396. 22397.]
+Perm: [4 1 3]   6078 resident_time     1120     5340       20  end_t   439580   444920   444940  frame_num  [21979. 22246. 22247.]
+Perm: [4 1 3]   6079 resident_time     2740    17260       20  end_t   448920   466180   466200  frame_num  [22446. 23309. 23310.]
+Perm: [4 1 3]   6081 resident_time       20    16240       20  end_t   289300   305540   305560  frame_num  [14465. 15277. 15278.]
+Perm: [4 1 3]   6083 resident_time     2840    12780       20  end_t   359320   372100   372120  frame_num  [17966. 18605. 18606.]
+Perm: [4 1 3]   6085 resident_time       20     8060     1060  end_t   129680   137740   138800  frame_num  [6484. 6887. 6940.]
+Perm: [4 1 3]   6086 resident_time     1600    13940       20  end_t   325760   339700   339720  frame_num  [16288. 16985. 16986.]
+Perm: [4 1 3]   6086 resident_time       20    20240      620  end_t   478860   499100   499720  frame_num  [23943. 24955. 24986.]
+Perm: [4 1 3]   6087 resident_time     1000     5300       20  end_t    61260    66560    66580  frame_num  [3063. 3328. 3329.]
+Perm: [4 1 3]   6089 resident_time     1780     8260     1440  end_t   434940   443200   444640  frame_num  [21747. 22160. 22232.]
+Perm: [4 1 3]   6090 resident_time     1420     9840       40  end_t   135060   144900   144940  frame_num  [6753. 7245. 7247.]
+Perm: [4 1 3]   6090 resident_time      640    20560       60  end_t   206280   226840   226900  frame_num  [10314. 11342. 11345.]
+Perm: [4 1 3]   6090 resident_time       20     6180       20  end_t   322860   329040   329060  frame_num  [16143. 16452. 16453.]
+Perm: [4 1 3]   6093 resident_time      440    23600       20  end_t     2960    26560    26580  frame_num  [ 148. 1328. 1329.]
+Perm: [4 1 3]   6093 resident_time     1040    13480      240  end_t   158500   171980   172220  frame_num  [7925. 8599. 8611.]
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 108
+Ave current (pA)      : 34.60702
+Ave conductance (pS)  : 115.35672
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [4 2 3] leak current up
+#################################
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 0
+Ave current (pA)      : 0.00000
+Ave conductance (pS)  : 0.00000
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [3 1 4] proper current down
+#################################
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 0
+Ave current (pA)      : 0.00000
+Ave conductance (pS)  : 0.00000
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [3 2 4] leak current down
+#################################
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 0
+Ave current (pA)      : 0.00000
+Ave conductance (pS)  : 0.00000
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [1 2] SF broken, inside-out
+#################################
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 0
+Ave current (pA)      : 0.00000
+Ave conductance (pS)  : 0.00000
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [2 1] SF broken, outside-in
+#################################
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 0
+Ave current (pA)      : 0.00000
+Ave conductance (pS)  : 0.00000
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [1 3 4] safety check 1 for current up
+#################################
+Perm: [1 3 4]   5961 resident_time    15200      940       20  end_t    15180    16120    16140  frame_num  [759. 806. 807.]
+Perm: [1 3 4]   5961 resident_time       60     2220       20  end_t    44900    47120    47140  frame_num  [2245. 2356. 2357.]
+Perm: [1 3 4]   5961 resident_time       20     1140     1040  end_t    62640    63780    64820  frame_num  [3132. 3189. 3241.]
+Perm: [1 3 4]   5961 resident_time     8480     1080       40  end_t   409940   411020   411060  frame_num  [20497. 20551. 20553.]
+Perm: [1 3 4]   5962 resident_time       20     2440     2700  end_t     3000     5440     8140  frame_num  [150. 272. 407.]
+Perm: [1 3 4]   5962 resident_time       20     1480       80  end_t   449920   451400   451480  frame_num  [22496. 22570. 22574.]
+Perm: [1 3 4]   5963 resident_time       20     1700      360  end_t      680     2380     2740  frame_num  [ 34. 119. 137.]
+Perm: [1 3 4]   5963 resident_time       20     1140       20  end_t   194280   195420   195440  frame_num  [9714. 9771. 9772.]
+Perm: [1 3 4]   5963 resident_time       20     2960      360  end_t   335220   338180   338540  frame_num  [16761. 16909. 16927.]
+Perm: [1 3 4]   5963 resident_time       20      520       40  end_t   441660   442180   442220  frame_num  [22083. 22109. 22111.]
+Perm: [1 3 4]   5965 resident_time       20      540       80  end_t   125880   126420   126500  frame_num  [6294. 6321. 6325.]
+Perm: [1 3 4]   5967 resident_time       20      600       60  end_t   373200   373800   373860  frame_num  [18660. 18690. 18693.]
+Perm: [1 3 4]   5969 resident_time       20      880      580  end_t    73520    74400    74980  frame_num  [3676. 3720. 3749.]
+Perm: [1 3 4]   5971 resident_time       20     1260      120  end_t   238680   239940   240060  frame_num  [11934. 11997. 12003.]
+Perm: [1 3 4]   5972 resident_time      800      500      340  end_t   113580   114080   114420  frame_num  [5679. 5704. 5721.]
+Perm: [1 3 4]   5972 resident_time       20      380       20  end_t   164460   164840   164860  frame_num  [8223. 8242. 8243.]
+Perm: [1 3 4]   5973 resident_time       20     1160       40  end_t    20360    21520    21560  frame_num  [1018. 1076. 1078.]
+Perm: [1 3 4]   5973 resident_time       20      360      200  end_t    50060    50420    50620  frame_num  [2503. 2521. 2531.]
+Perm: [1 3 4]   5973 resident_time       20     1840     1020  end_t   263800   265640   266660  frame_num  [13190. 13282. 13333.]
+Perm: [1 3 4]   5973 resident_time       20      720       20  end_t   464520   465240   465260  frame_num  [23226. 23262. 23263.]
+Perm: [1 3 4]   5974 resident_time       60      920      100  end_t   395920   396840   396940  frame_num  [19796. 19842. 19847.]
+Perm: [1 3 4]   5975 resident_time       20     2920      240  end_t   411260   414180   414420  frame_num  [20563. 20709. 20721.]
+Perm: [1 3 4]   5975 resident_time    11240      760       20  end_t   454440   455200   455220  frame_num  [22722. 22760. 22761.]
+Perm: [1 3 4]   5977 resident_time      100     1280      560  end_t   146020   147300   147860  frame_num  [7301. 7365. 7393.]
+Perm: [1 3 4]   5978 resident_time       20     1020       40  end_t   135440   136460   136500  frame_num  [6772. 6823. 6825.]
+Perm: [1 3 4]   5978 resident_time       40     1320       40  end_t   251120   252440   252480  frame_num  [12556. 12622. 12624.]
+Perm: [1 3 4]   5979 resident_time     5360     2420       20  end_t    65600    68020    68040  frame_num  [3280. 3401. 3402.]
+Perm: [1 3 4]   5980 resident_time       20     1360      840  end_t   201340   202700   203540  frame_num  [10067. 10135. 10177.]
+Perm: [1 3 4]   5980 resident_time       20      320       20  end_t   293800   294120   294140  frame_num  [14690. 14706. 14707.]
+Perm: [1 3 4]   5982 resident_time    12440     1120      120  end_t    93420    94540    94660  frame_num  [4671. 4727. 4733.]
+Perm: [1 3 4]   5983 resident_time       20      500       20  end_t   387820   388320   388340  frame_num  [19391. 19416. 19417.]
+Perm: [1 3 4]   5985 resident_time       20     1040      560  end_t   206420   207460   208020  frame_num  [10321. 10373. 10401.]
+Perm: [1 3 4]   5985 resident_time       20      660       20  end_t   412980   413640   413660  frame_num  [20649. 20682. 20683.]
+Perm: [1 3 4]   5986 resident_time      220      520       20  end_t    60240    60760    60780  frame_num  [3012. 3038. 3039.]
+Perm: [1 3 4]   5986 resident_time       20      740       20  end_t   188580   189320   189340  frame_num  [9429. 9466. 9467.]
+Perm: [1 3 4]   5987 resident_time      180      440       60  end_t   202780   203220   203280  frame_num  [10139. 10161. 10164.]
+Perm: [1 3 4]   5988 resident_time       20     1460       20  end_t   165380   166840   166860  frame_num  [8269. 8342. 8343.]
+Perm: [1 3 4]   5992 resident_time       20      560       40  end_t   197960   198520   198560  frame_num  [9898. 9926. 9928.]
+Perm: [1 3 4]   5992 resident_time       20      440       40  end_t   433400   433840   433880  frame_num  [21670. 21692. 21694.]
+Perm: [1 3 4]   5993 resident_time     8120      660       60  end_t   273700   274360   274420  frame_num  [13685. 13718. 13721.]
+Perm: [1 3 4]   5994 resident_time    22600      740      280  end_t   117060   117800   118080  frame_num  [5853. 5890. 5904.]
+Perm: [1 3 4]   5994 resident_time       20      760       20  end_t   129680   130440   130460  frame_num  [6484. 6522. 6523.]
+Perm: [1 3 4]   5994 resident_time      100     1300       20  end_t   268500   269800   269820  frame_num  [13425. 13490. 13491.]
+Perm: [1 3 4]   5994 resident_time       20      280       20  end_t   314820   315100   315120  frame_num  [15741. 15755. 15756.]
+Perm: [1 3 4]   5995 resident_time       20      540      100  end_t   260560   261100   261200  frame_num  [13028. 13055. 13060.]
+Perm: [1 3 4]   5995 resident_time     5160     1620       20  end_t   431260   432880   432900  frame_num  [21563. 21644. 21645.]
+Perm: [1 3 4]   5996 resident_time       20      740      140  end_t   289300   290040   290180  frame_num  [14465. 14502. 14509.]
+Perm: [1 3 4]   5996 resident_time       20      560       20  end_t   340620   341180   341200  frame_num  [17031. 17059. 17060.]
+Perm: [1 3 4]   5996 resident_time     1460      640      180  end_t   384860   385500   385680  frame_num  [19243. 19275. 19284.]
+Perm: [1 3 4]   5996 resident_time       40      500     1580  end_t   405700   406200   407780  frame_num  [20285. 20310. 20389.]
+Perm: [1 3 4]   5997 resident_time       20      280     1060  end_t   286500   286780   287840  frame_num  [14325. 14339. 14392.]
+Perm: [1 3 4]   5998 resident_time       20     2560      120  end_t   204740   207300   207420  frame_num  [10237. 10365. 10371.]
+Perm: [1 3 4]   5999 resident_time       40      920       20  end_t   375600   376520   376540  frame_num  [18780. 18826. 18827.]
+Perm: [1 3 4]   6003 resident_time    19120      400      220  end_t   203080   203480   203700  frame_num  [10154. 10174. 10185.]
+Perm: [1 3 4]   6005 resident_time       20      600      280  end_t   173340   173940   174220  frame_num  [8667. 8697. 8711.]
+Perm: [1 3 4]   6005 resident_time      160     1020      360  end_t   468560   469580   469940  frame_num  [23428. 23479. 23497.]
+Perm: [1 3 4]   6006 resident_time       40     1520       40  end_t   316580   318100   318140  frame_num  [15829. 15905. 15907.]
+Perm: [1 3 4]   6006 resident_time      600      960       60  end_t   431200   432160   432220  frame_num  [21560. 21608. 21611.]
+Perm: [1 3 4]   6007 resident_time       20     1000      180  end_t   143520   144520   144700  frame_num  [7176. 7226. 7235.]
+Perm: [1 3 4]   6007 resident_time       20     1420      680  end_t   301780   303200   303880  frame_num  [15089. 15160. 15194.]
+Perm: [1 3 4]   6008 resident_time       20      460       20  end_t     7960     8420     8440  frame_num  [398. 421. 422.]
+Perm: [1 3 4]   6008 resident_time     5780     1340       20  end_t   122060   123400   123420  frame_num  [6103. 6170. 6171.]
+Perm: [1 3 4]   6009 resident_time     8700     2000      400  end_t   296520   298520   298920  frame_num  [14826. 14926. 14946.]
+Perm: [1 3 4]   6009 resident_time       20     3300       20  end_t   489580   492880   492900  frame_num  [24479. 24644. 24645.]
+Perm: [1 3 4]   6010 resident_time     7340     1040       20  end_t   183980   185020   185040  frame_num  [9199. 9251. 9252.]
+Perm: [1 3 4]   6010 resident_time      100     2080      140  end_t   434940   437020   437160  frame_num  [21747. 21851. 21858.]
+Perm: [1 3 4]   6011 resident_time       40      740       20  end_t   300020   300760   300780  frame_num  [15001. 15038. 15039.]
+Perm: [1 3 4]   6012 resident_time       20     1440       40  end_t   205680   207120   207160  frame_num  [10284. 10356. 10358.]
+Perm: [1 3 4]   6013 resident_time       20      780       20  end_t   250660   251440   251460  frame_num  [12533. 12572. 12573.]
+Perm: [1 3 4]   6013 resident_time       20     1080       20  end_t   462440   463520   463540  frame_num  [23122. 23176. 23177.]
+Perm: [1 3 4]   6015 resident_time       20     2920      180  end_t   200380   203300   203480  frame_num  [10019. 10165. 10174.]
+Perm: [1 3 4]   6016 resident_time       20      680       60  end_t    61500    62180    62240  frame_num  [3075. 3109. 3112.]
+Perm: [1 3 4]   6016 resident_time       20     1660      120  end_t   190620   192280   192400  frame_num  [9531. 9614. 9620.]
+Perm: [1 3 4]   6017 resident_time       20     1260       40  end_t   204480   205740   205780  frame_num  [10224. 10287. 10289.]
+Perm: [1 3 4]   6017 resident_time      980     1380      640  end_t   424240   425620   426260  frame_num  [21212. 21281. 21313.]
+Perm: [1 3 4]   6018 resident_time       20      560       80  end_t   333480   334040   334120  frame_num  [16674. 16702. 16706.]
+Perm: [1 3 4]   6020 resident_time       20     1200       20  end_t    46840    48040    48060  frame_num  [2342. 2402. 2403.]
+Perm: [1 3 4]   6020 resident_time     3640     2400      120  end_t   323700   326100   326220  frame_num  [16185. 16305. 16311.]
+Perm: [1 3 4]   6021 resident_time       20      880      920  end_t   101340   102220   103140  frame_num  [5067. 5111. 5157.]
+Perm: [1 3 4]   6021 resident_time       20      640       20  end_t   214340   214980   215000  frame_num  [10717. 10749. 10750.]
+Perm: [1 3 4]   6021 resident_time      680     2440       20  end_t   428200   430640   430660  frame_num  [21410. 21532. 21533.]
+Perm: [1 3 4]   6023 resident_time       20     1580       20  end_t   128680   130260   130280  frame_num  [6434. 6513. 6514.]
+Perm: [1 3 4]   6026 resident_time       40     1700       20  end_t   239380   241080   241100  frame_num  [11969. 12054. 12055.]
+Perm: [1 3 4]   6026 resident_time       40      640       20  end_t   281060   281700   281720  frame_num  [14053. 14085. 14086.]
+Perm: [1 3 4]   6027 resident_time       20      980      260  end_t    30840    31820    32080  frame_num  [1542. 1591. 1604.]
+Perm: [1 3 4]   6029 resident_time       20      660       20  end_t   163080   163740   163760  frame_num  [8154. 8187. 8188.]
+Perm: [1 3 4]   6030 resident_time      220      160       40  end_t   121000   121160   121200  frame_num  [6050. 6058. 6060.]
+Perm: [1 3 4]   6030 resident_time       20     1340       20  end_t   210920   212260   212280  frame_num  [10546. 10613. 10614.]
+Perm: [1 3 4]   6030 resident_time       20      800       20  end_t   271520   272320   272340  frame_num  [13576. 13616. 13617.]
+Perm: [1 3 4]   6030 resident_time       20     1200      140  end_t   414540   415740   415880  frame_num  [20727. 20787. 20794.]
+Perm: [1 3 4]   6032 resident_time       20     1500     1040  end_t   161720   163220   164260  frame_num  [8086. 8161. 8213.]
+Perm: [1 3 4]   6033 resident_time       20      380       20  end_t   359460   359840   359860  frame_num  [17973. 17992. 17993.]
+Perm: [1 3 4]   6033 resident_time       20      540       20  end_t   420740   421280   421300  frame_num  [21037. 21064. 21065.]
+Perm: [1 3 4]   6034 resident_time       40     1280     1320  end_t   270060   271340   272660  frame_num  [13503. 13567. 13633.]
+Perm: [1 3 4]   6036 resident_time       40     1260      180  end_t    39020    40280    40460  frame_num  [1951. 2014. 2023.]
+Perm: [1 3 4]   6038 resident_time       20     2300       20  end_t   260000   262300   262320  frame_num  [13000. 13115. 13116.]
+Perm: [1 3 4]   6040 resident_time       20     1000     1200  end_t   228300   229300   230500  frame_num  [11415. 11465. 11525.]
+Perm: [1 3 4]   6041 resident_time     3720      600     2140  end_t    58540    59140    61280  frame_num  [2927. 2957. 3064.]
+Perm: [1 3 4]   6041 resident_time       20     1360       20  end_t    90660    92020    92040  frame_num  [4533. 4601. 4602.]
+Perm: [1 3 4]   6041 resident_time       20      480      220  end_t   213200   213680   213900  frame_num  [10660. 10684. 10695.]
+Perm: [1 3 4]   6041 resident_time       20     1180      280  end_t   322900   324080   324360  frame_num  [16145. 16204. 16218.]
+Perm: [1 3 4]   6041 resident_time       20      840      360  end_t   465820   466660   467020  frame_num  [23291. 23333. 23351.]
+Perm: [1 3 4]   6042 resident_time       40     1100       40  end_t   171280   172380   172420  frame_num  [8564. 8619. 8621.]
+Perm: [1 3 4]   6043 resident_time       20      980       40  end_t   479180   480160   480200  frame_num  [23959. 24008. 24010.]
+Perm: [1 3 4]   6044 resident_time       20      460       20  end_t   337260   337720   337740  frame_num  [16863. 16886. 16887.]
+Perm: [1 3 4]   6045 resident_time     4520      880      360  end_t    63040    63920    64280  frame_num  [3152. 3196. 3214.]
+Perm: [1 3 4]   6045 resident_time       20      760       20  end_t   237420   238180   238200  frame_num  [11871. 11909. 11910.]
+Perm: [1 3 4]   6045 resident_time    18080      740      980  end_t   319440   320180   321160  frame_num  [15972. 16009. 16058.]
+Perm: [1 3 4]   6046 resident_time       20      880       80  end_t   211700   212580   212660  frame_num  [10585. 10629. 10633.]
+Perm: [1 3 4]   6047 resident_time       20      500       20  end_t   219440   219940   219960  frame_num  [10972. 10997. 10998.]
+Perm: [1 3 4]   6048 resident_time      100     1860       20  end_t   155820   157680   157700  frame_num  [7791. 7884. 7885.]
+Perm: [1 3 4]   6048 resident_time       20      600      200  end_t   472560   473160   473360  frame_num  [23628. 23658. 23668.]
+Perm: [1 3 4]   6048 resident_time       40     1940       20  end_t   486580   488520   488540  frame_num  [24329. 24426. 24427.]
+Perm: [1 3 4]   6049 resident_time       20     2020      560  end_t    54080    56100    56660  frame_num  [2704. 2805. 2833.]
+Perm: [1 3 4]   6049 resident_time     9860      860       40  end_t   388220   389080   389120  frame_num  [19411. 19454. 19456.]
+Perm: [1 3 4]   6049 resident_time       20     2220      420  end_t   391760   393980   394400  frame_num  [19588. 19699. 19720.]
+Perm: [1 3 4]   6050 resident_time    27220     1640      140  end_t    92820    94460    94600  frame_num  [4641. 4723. 4730.]
+Perm: [1 3 4]   6050 resident_time       20     1040       40  end_t   399680   400720   400760  frame_num  [19984. 20036. 20038.]
+Perm: [1 3 4]   6051 resident_time       20     1220       40  end_t   123760   124980   125020  frame_num  [6188. 6249. 6251.]
+Perm: [1 3 4]   6054 resident_time       40      960       20  end_t   319100   320060   320080  frame_num  [15955. 16003. 16004.]
+Perm: [1 3 4]   6054 resident_time     3320     2400       60  end_t   439600   442000   442060  frame_num  [21980. 22100. 22103.]
+Perm: [1 3 4]   6055 resident_time    12640      760      160  end_t    94460    95220    95380  frame_num  [4723. 4761. 4769.]
+Perm: [1 3 4]   6055 resident_time       20      360       60  end_t   193340   193700   193760  frame_num  [9667. 9685. 9688.]
+Perm: [1 3 4]   6055 resident_time       20      440       20  end_t   442800   443240   443260  frame_num  [22140. 22162. 22163.]
+Perm: [1 3 4]   6056 resident_time    18800      860      380  end_t    81820    82680    83060  frame_num  [4091. 4134. 4153.]
+Perm: [1 3 4]   6056 resident_time     5680     1200       20  end_t   209640   210840   210860  frame_num  [10482. 10542. 10543.]
+Perm: [1 3 4]   6057 resident_time       40     2600      160  end_t    22920    25520    25680  frame_num  [1146. 1276. 1284.]
+Perm: [1 3 4]   6057 resident_time       20      960       20  end_t   382900   383860   383880  frame_num  [19145. 19193. 19194.]
+Perm: [1 3 4]   6058 resident_time       20      340       20  end_t   249260   249600   249620  frame_num  [12463. 12480. 12481.]
+Perm: [1 3 4]   6059 resident_time       20     5240       40  end_t    37440    42680    42720  frame_num  [1872. 2134. 2136.]
+Perm: [1 3 4]   6059 resident_time       20     1480       20  end_t   277160   278640   278660  frame_num  [13858. 13932. 13933.]
+Perm: [1 3 4]   6059 resident_time    22020     1100       20  end_t   362640   363740   363760  frame_num  [18132. 18187. 18188.]
+Perm: [1 3 4]   6061 resident_time       20      640       40  end_t   206140   206780   206820  frame_num  [10307. 10339. 10341.]
+Perm: [1 3 4]   6061 resident_time       20     1080       20  end_t   352240   353320   353340  frame_num  [17612. 17666. 17667.]
+Perm: [1 3 4]   6062 resident_time       20     2880      160  end_t   494500   497380   497540  frame_num  [24725. 24869. 24877.]
+Perm: [1 3 4]   6063 resident_time       20     1400       60  end_t   426460   427860   427920  frame_num  [21323. 21393. 21396.]
+Perm: [1 3 4]   6065 resident_time    15720     1480       20  end_t   378360   379840   379860  frame_num  [18918. 18992. 18993.]
+Perm: [1 3 4]   6065 resident_time    11960      360       20  end_t   396820   397180   397200  frame_num  [19841. 19859. 19860.]
+Perm: [1 3 4]   6066 resident_time       20      760      320  end_t   132240   133000   133320  frame_num  [6612. 6650. 6666.]
+Perm: [1 3 4]   6066 resident_time       20     1900     1780  end_t   339200   341100   342880  frame_num  [16960. 17055. 17144.]
+Perm: [1 3 4]   6067 resident_time       20      680       80  end_t   480560   481240   481320  frame_num  [24028. 24062. 24066.]
+Perm: [1 3 4]   6068 resident_time       20     2920      320  end_t   325800   328720   329040  frame_num  [16290. 16436. 16452.]
+Perm: [1 3 4]   6069 resident_time    15760      880      160  end_t    16060    16940    17100  frame_num  [803. 847. 855.]
+Perm: [1 3 4]   6069 resident_time       60      940      100  end_t   116800   117740   117840  frame_num  [5840. 5887. 5892.]
+Perm: [1 3 4]   6069 resident_time       20      700       60  end_t   265660   266360   266420  frame_num  [13283. 13318. 13321.]
+Perm: [1 3 4]   6070 resident_time       60     1120       20  end_t   449580   450700   450720  frame_num  [22479. 22535. 22536.]
+Perm: [1 3 4]   6071 resident_time     1260      940      320  end_t   368260   369200   369520  frame_num  [18413. 18460. 18476.]
+Perm: [1 3 4]   6072 resident_time    13600      880      660  end_t   158500   159380   160040  frame_num  [7925. 7969. 8002.]
+Perm: [1 3 4]   6074 resident_time       40     1640      200  end_t   451000   452640   452840  frame_num  [22550. 22632. 22642.]
+Perm: [1 3 4]   6075 resident_time       40     1740       20  end_t   257720   259460   259480  frame_num  [12886. 12973. 12974.]
+Perm: [1 3 4]   6075 resident_time       20     3340      120  end_t   492980   496320   496440  frame_num  [24649. 24816. 24822.]
+Perm: [1 3 4]   6076 resident_time       20      500       20  end_t   340220   340720   340740  frame_num  [17011. 17036. 17037.]
+Perm: [1 3 4]   6077 resident_time      820     1220       80  end_t   448920   450140   450220  frame_num  [22446. 22507. 22511.]
+Perm: [1 3 4]   6078 resident_time       20     1460       20  end_t    25020    26480    26500  frame_num  [1251. 1324. 1325.]
+Perm: [1 3 4]   6078 resident_time       20     1640      720  end_t   446860   448500   449220  frame_num  [22343. 22425. 22461.]
+Perm: [1 3 4]   6079 resident_time      180     1380      260  end_t   466380   467760   468020  frame_num  [23319. 23388. 23401.]
+Perm: [1 3 4]   6081 resident_time       40      480       20  end_t    87440    87920    87940  frame_num  [4372. 4396. 4397.]
+Perm: [1 3 4]   6081 resident_time       20     1240       40  end_t   217300   218540   218580  frame_num  [10865. 10927. 10929.]
+Perm: [1 3 4]   6081 resident_time       60      420      340  end_t   305620   306040   306380  frame_num  [15281. 15302. 15319.]
+Perm: [1 3 4]   6083 resident_time       20     1420      100  end_t   376480   377900   378000  frame_num  [18824. 18895. 18900.]
+Perm: [1 3 4]   6083 resident_time       20     1820       20  end_t   483200   485020   485040  frame_num  [24160. 24251. 24252.]
+Perm: [1 3 4]   6085 resident_time     8060     1060      100  end_t   137740   138800   138900  frame_num  [6887. 6940. 6945.]
+Perm: [1 3 4]   6085 resident_time       40      480       20  end_t   387140   387620   387640  frame_num  [19357. 19381. 19382.]
+Perm: [1 3 4]   6086 resident_time       20      740      100  end_t   213860   214600   214700  frame_num  [10693. 10730. 10735.]
+Perm: [1 3 4]   6086 resident_time      120      740       20  end_t   339840   340580   340600  frame_num  [16992. 17029. 17030.]
+Perm: [1 3 4]   6086 resident_time    20240      620      100  end_t   499100   499720   499820  frame_num  [24955. 24986. 24991.]
+Perm: [1 3 4]   6087 resident_time       20      600       40  end_t    81320    81920    81960  frame_num  [4066. 4096. 4098.]
+Perm: [1 3 4]   6087 resident_time       40      760       20  end_t   134680   135440   135460  frame_num  [6734. 6772. 6773.]
+Perm: [1 3 4]   6089 resident_time     8260     1440       20  end_t   443200   444640   444660  frame_num  [22160. 22232. 22233.]
+Perm: [1 3 4]   6090 resident_time       20      500       40  end_t     5160     5660     5700  frame_num  [258. 283. 285.]
+Perm: [1 3 4]   6090 resident_time       20     1600      160  end_t   145380   146980   147140  frame_num  [7269. 7349. 7357.]
+Perm: [1 3 4]   6090 resident_time       40      460       60  end_t   227140   227600   227660  frame_num  [11357. 11380. 11383.]
+Perm: [1 3 4]   6090 resident_time       20     1180      480  end_t   329560   330740   331220  frame_num  [16478. 16537. 16561.]
+Perm: [1 3 4]   6091 resident_time       20      560       20  end_t   242460   243020   243040  frame_num  [12123. 12151. 12152.]
+Perm: [1 3 4]   6092 resident_time       20     2000      180  end_t   152360   154360   154540  frame_num  [7618. 7718. 7727.]
+Perm: [1 3 4]   6092 resident_time       20     1340       40  end_t   222120   223460   223500  frame_num  [11106. 11173. 11175.]
+Perm: [1 3 4]   6092 resident_time       20     1040       20  end_t   275900   276940   276960  frame_num  [13795. 13847. 13848.]
+Perm: [1 3 4]   6092 resident_time       20      480       40  end_t   299020   299500   299540  frame_num  [14951. 14975. 14977.]
+Perm: [1 3 4]   6093 resident_time       40      400       40  end_t    26620    27020    27060  frame_num  [1331. 1351. 1353.]
+Perm: [1 3 4]   6093 resident_time       20      960       20  end_t   172240   173200   173220  frame_num  [8612. 8660. 8661.]
+Perm: [1 3 4]   6093 resident_time       20      880      120  end_t   306840   307720   307840  frame_num  [15342. 15386. 15392.]
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 181
+Ave current (pA)      : 57.99879
+Ave conductance (pS)  : 193.32931
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [3 4 1] safety check 2 for current up
+#################################
+Perm: [3 4 1]   5961 resident_time      880     1040    14120  end_t    29600    30640    44760  frame_num  [1480. 1532. 2238.]
+Perm: [3 4 1]   5961 resident_time       60      460    13000  end_t   387700   388160   401160  frame_num  [19385. 19408. 20058.]
+Perm: [3 4 1]   5965 resident_time      180      400     4660  end_t   120580   120980   125640  frame_num  [6029. 6049. 6282.]
+Perm: [3 4 1]   5971 resident_time       80     1660     2880  end_t   217320   218980   221860  frame_num  [10866. 10949. 11093.]
+Perm: [3 4 1]   5972 resident_time       40     1860    10120  end_t    90940    92800   102920  frame_num  [4547. 4640. 5146.]
+Perm: [3 4 1]   5973 resident_time      100      680     8860  end_t    37980    38660    47520  frame_num  [1899. 1933. 2376.]
+Perm: [3 4 1]   5973 resident_time       20     2140    11500  end_t   248180   250320   261820  frame_num  [12409. 12516. 13091.]
+Perm: [3 4 1]   5974 resident_time       20     1120    13200  end_t   381180   382300   395500  frame_num  [19059. 19115. 19775.]
+Perm: [3 4 1]   5975 resident_time       20     1580    15220  end_t   393900   395480   410700  frame_num  [19695. 19774. 20535.]
+Perm: [3 4 1]   5975 resident_time      360     1060    11240  end_t   442140   443200   454440  frame_num  [22107. 22160. 22722.]
+Perm: [3 4 1]   5977 resident_time      540      740     8040  end_t   136980   137720   145760  frame_num  [6849. 6886. 7288.]
+Perm: [3 4 1]   5978 resident_time     1280     1520     9180  end_t   124360   125880   135060  frame_num  [6218. 6294. 6753.]
+Perm: [3 4 1]   5978 resident_time       60     2960    11700  end_t   236400   239360   251060  frame_num  [11820. 11968. 12553.]
+Perm: [3 4 1]   5979 resident_time       80      660     5360  end_t    59580    60240    65600  frame_num  [2979. 3012. 3280.]
+Perm: [3 4 1]   5982 resident_time       20      440    12440  end_t    80540    80980    93420  frame_num  [4027. 4049. 4671.]
+Perm: [3 4 1]   5985 resident_time      120     1860     3200  end_t   201220   203080   206280  frame_num  [10061. 10154. 10314.]
+Perm: [3 4 1]   5985 resident_time       20      600       20  end_t   396180   396780   396800  frame_num  [19809. 19839. 19840.]
+Perm: [3 4 1]   5986 resident_time      560     1320      800  end_t    47860    49180    49980  frame_num  [2393. 2459. 2499.]
+Perm: [3 4 1]   5987 resident_time      980     2260      240  end_t   169720   171980   172220  frame_num  [8486. 8599. 8611.]
+Perm: [3 4 1]   5988 resident_time      260     1480    19280  end_t   144540   146020   165300  frame_num  [7227. 7301. 8265.]
+Perm: [3 4 1]   5992 resident_time     2140     1620    20920  end_t   169480   171100   192020  frame_num  [8474. 8555. 9601.]
+Perm: [3 4 1]   5992 resident_time       20     1820     5080  end_t   426360   428180   433260  frame_num  [21318. 21409. 21663.]
+Perm: [3 4 1]   5993 resident_time     1200      980     8120  end_t   264600   265580   273700  frame_num  [13230. 13279. 13685.]
+Perm: [3 4 1]   5994 resident_time     1100     1560    22600  end_t    92900    94460   117060  frame_num  [4645. 4723. 5853.]
+Perm: [3 4 1]   5994 resident_time       20     1220       20  end_t   258480   259700   259720  frame_num  [12924. 12985. 12986.]
+Perm: [3 4 1]   5995 resident_time       40     1600     5160  end_t   424500   426100   431260  frame_num  [21225. 21305. 21563.]
+Perm: [3 4 1]   5996 resident_time       20      800    11260  end_t   328480   329280   340540  frame_num  [16424. 16464. 17027.]
+Perm: [3 4 1]   5996 resident_time      560     1440     7000  end_t   374940   376380   383380  frame_num  [18747. 18819. 19169.]
+Perm: [3 4 1]   5997 resident_time       20      560      260  end_t   269200   269760   270020  frame_num  [13460. 13488. 13501.]
+Perm: [3 4 1]   6003 resident_time      400     1660    19120  end_t   182300   183960   203080  frame_num  [ 9115.  9198. 10154.]
+Perm: [3 4 1]   6005 resident_time       60     3560    13420  end_t   450860   454420   467840  frame_num  [22543. 22721. 23392.]
+Perm: [3 4 1]   6006 resident_time       20      660    15540  end_t   295860   296520   312060  frame_num  [14793. 14826. 15603.]
+Perm: [3 4 1]   6006 resident_time       20     1700     4720  end_t   422540   424240   428960  frame_num  [21127. 21212. 21448.]
+Perm: [3 4 1]   6007 resident_time       20     1520    11980  end_t   129840   131360   143340  frame_num  [6492. 6568. 7167.]
+Perm: [3 4 1]   6007 resident_time       40      340    24300  end_t   276360   276700   301000  frame_num  [13818. 13835. 15050.]
+Perm: [3 4 1]   6008 resident_time       40     2200     5780  end_t   114080   116280   122060  frame_num  [5704. 5814. 6103.]
+Perm: [3 4 1]   6008 resident_time      120      900     5780  end_t   493320   494220   500000  frame_num  [24666. 24711. 25000.]
+Perm: [3 4 1]   6009 resident_time       20      900    13800  end_t   272800   273700   287500  frame_num  [13640. 13685. 14375.]
+Perm: [3 4 1]   6010 resident_time       20      800       60  end_t   164500   165300   165360  frame_num  [8225. 8265. 8268.]
+Perm: [3 4 1]   6010 resident_time       20     4400     2920  end_t   426760   431160   434080  frame_num  [21338. 21558. 21704.]
+Perm: [3 4 1]   6012 resident_time       60      760     2760  end_t   202020   202780   205540  frame_num  [10101. 10139. 10277.]
+Perm: [3 4 1]   6013 resident_time       80     1200    11780  end_t   237360   238560   250340  frame_num  [11868. 11928. 12517.]
+Perm: [3 4 1]   6016 resident_time       20     1500     8320  end_t    51460    52960    61280  frame_num  [2573. 2648. 3064.]
+Perm: [3 4 1]   6017 resident_time      140     1160     5760  end_t   196640   197800   203560  frame_num  [ 9832.  9890. 10178.]
+Perm: [3 4 1]   6017 resident_time       20      960     9960  end_t   411940   412900   422860  frame_num  [20597. 20645. 21143.]
+Perm: [3 4 1]   6020 resident_time       40     2420     8100  end_t    34900    37320    45420  frame_num  [1745. 1866. 2271.]
+Perm: [3 4 1]   6020 resident_time       60     3100    14420  end_t   302520   305620   320040  frame_num  [15126. 15281. 16002.]
+Perm: [3 4 1]   6021 resident_time      360      760      860  end_t   419100   419860   420720  frame_num  [20955. 20993. 21036.]
+Perm: [3 4 1]   6023 resident_time      120      520     6260  end_t   121540   122060   128320  frame_num  [6077. 6103. 6416.]
+Perm: [3 4 1]   6026 resident_time      540     2360      120  end_t   224480   226840   226960  frame_num  [11224. 11342. 11348.]
+Perm: [3 4 1]   6027 resident_time       40     1200    12500  end_t    13980    15180    27680  frame_num  [ 699.  759. 1384.]
+Perm: [3 4 1]   6029 resident_time       20     1700      100  end_t   478340   480040   480140  frame_num  [23917. 24002. 24007.]
+Perm: [3 4 1]   6030 resident_time      120     1000     5420  end_t   112560   113560   118980  frame_num  [5628. 5678. 5949.]
+Perm: [3 4 1]   6030 resident_time       40     1220     4520  end_t   408700   409920   414440  frame_num  [20435. 20496. 20722.]
+Perm: [3 4 1]   6033 resident_time       40     1400    17200  end_t   338440   339840   357040  frame_num  [16922. 16992. 17852.]
+Perm: [3 4 1]   6033 resident_time       40     1120     8500  end_t   410040   411160   419660  frame_num  [20502. 20558. 20983.]
+Perm: [3 4 1]   6034 resident_time      100      620       60  end_t   263100   263720   263780  frame_num  [13155. 13186. 13189.]
+Perm: [3 4 1]   6036 resident_time       40     2980    12040  end_t    23640    26620    38660  frame_num  [1182. 1331. 1933.]
+Perm: [3 4 1]   6038 resident_time       20      820     8480  end_t   247740   248560   257040  frame_num  [12387. 12428. 12852.]
+Perm: [3 4 1]   6041 resident_time       20      920       20  end_t    45080    46000    46020  frame_num  [2254. 2300. 2301.]
+Perm: [3 4 1]   6041 resident_time       40     2340       40  end_t   444400   446740   446780  frame_num  [22220. 22337. 22339.]
+Perm: [3 4 1]   6042 resident_time       20     1180    12640  end_t   154640   155820   168460  frame_num  [7732. 7791. 8423.]
+Perm: [3 4 1]   6045 resident_time      120      380     4520  end_t    58140    58520    63040  frame_num  [2907. 2926. 3152.]
+Perm: [3 4 1]   6045 resident_time      100     1640    27640  end_t   208000   209640   237280  frame_num  [10400. 10482. 11864.]
+Perm: [3 4 1]   6045 resident_time      240     2020    18080  end_t   299340   301360   319440  frame_num  [14967. 15068. 15972.]
+Perm: [3 4 1]   6047 resident_time      160     1620    10760  end_t   203920   205540   216300  frame_num  [10196. 10277. 10815.]
+Perm: [3 4 1]   6048 resident_time      120     1220     6660  end_t   142120   143340   150000  frame_num  [7106. 7167. 7500.]
+Perm: [3 4 1]   6049 resident_time       20     1320     7660  end_t    43440    44760    52420  frame_num  [2172. 2238. 2621.]
+Perm: [3 4 1]   6049 resident_time       20      960     9860  end_t   377400   378360   388220  frame_num  [18870. 18918. 19411.]
+Perm: [3 4 1]   6050 resident_time      260      880    27220  end_t    64720    65600    92820  frame_num  [3236. 3280. 4641.]
+Perm: [3 4 1]   6051 resident_time      600     1140     6420  end_t   115920   117060   123480  frame_num  [5796. 5853. 6174.]
+Perm: [3 4 1]   6054 resident_time       80      580     4960  end_t   430680   431260   436220  frame_num  [21534. 21563. 21811.]
+Perm: [3 4 1]   6055 resident_time       20      920    12640  end_t    80900    81820    94460  frame_num  [4045. 4091. 4723.]
+Perm: [3 4 1]   6055 resident_time       40      700     7280  end_t   432620   433320   440600  frame_num  [21631. 21666. 22030.]
+Perm: [3 4 1]   6056 resident_time      380     1260    18800  end_t    61760    63020    81820  frame_num  [3088. 3151. 4091.]
+Perm: [3 4 1]   6056 resident_time      100      560     5680  end_t   203400   203960   209640  frame_num  [10170. 10198. 10482.]
+Perm: [3 4 1]   6057 resident_time       20      860    14120  end_t   367360   368220   382340  frame_num  [18368. 18411. 19117.]
+Perm: [3 4 1]   6058 resident_time       20     1240     7300  end_t   236040   237280   244580  frame_num  [11802. 11864. 12229.]
+Perm: [3 4 1]   6059 resident_time      240     1280     6820  end_t    14780    16060    22880  frame_num  [ 739.  803. 1144.]
+Perm: [3 4 1]   6059 resident_time       20     2000     8200  end_t   266500   268500   276700  frame_num  [13325. 13425. 13835.]
+Perm: [3 4 1]   6059 resident_time       80     1160       80  end_t   339360   340520   340600  frame_num  [16968. 17026. 17030.]
+Perm: [3 4 1]   6061 resident_time       20     1940     4320  end_t   337180   339120   343440  frame_num  [16859. 16956. 17172.]
+Perm: [3 4 1]   6062 resident_time       20      980    27840  end_t   465400   466380   494220  frame_num  [23270. 23319. 24711.]
+Perm: [3 4 1]   6063 resident_time      100     3300    11660  end_t   411140   414440   426100  frame_num  [20557. 20722. 21305.]
+Perm: [3 4 1]   6065 resident_time       20     1540    15720  end_t   361100   362640   378360  frame_num  [18055. 18132. 18918.]
+Perm: [3 4 1]   6065 resident_time       20      540    11960  end_t   384320   384860   396820  frame_num  [19216. 19243. 19841.]
+Perm: [3 4 1]   6066 resident_time       20     1180     7480  end_t   122420   123600   131080  frame_num  [6121. 6180. 6554.]
+Perm: [3 4 1]   6066 resident_time       20     3780    15420  end_t   319920   323700   339120  frame_num  [15996. 16185. 16956.]
+Perm: [3 4 1]   6067 resident_time       20     1560     3420  end_t   464160   465720   469140  frame_num  [23208. 23286. 23457.]
+Perm: [3 4 1]   6068 resident_time      240     4840     9200  end_t   311720   316560   325760  frame_num  [15586. 15828. 16288.]
+Perm: [3 4 1]   6069 resident_time       60     1000    21060  end_t    92420    93420   114480  frame_num  [4621. 4671. 5724.]
+Perm: [3 4 1]   6069 resident_time      100     1640    13880  end_t   249480   251120   265000  frame_num  [12474. 12556. 13250.]
+Perm: [3 4 1]   6071 resident_time      780     1380    15140  end_t   349840   351220   366360  frame_num  [17492. 17561. 18318.]
+Perm: [3 4 1]   6072 resident_time       20     5880    13600  end_t   139020   144900   158500  frame_num  [6951. 7245. 7925.]
+Perm: [3 4 1]   6077 resident_time       20     2100     5240  end_t   440580   442680   447920  frame_num  [22029. 22134. 22396.]
+Perm: [3 4 1]   6078 resident_time       20     1120     5340  end_t   438460   439580   444920  frame_num  [21923. 21979. 22246.]
+Perm: [3 4 1]   6079 resident_time      140     2740    17260  end_t   446180   448920   466180  frame_num  [22309. 22446. 23309.]
+Perm: [3 4 1]   6079 resident_time      980     1140      900  end_t   497960   499100   500000  frame_num  [24898. 24955. 25000.]
+Perm: [3 4 1]   6081 resident_time       20     3000     3060  end_t   283220   286220   289280  frame_num  [14161. 14311. 14464.]
+Perm: [3 4 1]   6083 resident_time       20     2840    12780  end_t   356480   359320   372100  frame_num  [17824. 17966. 18605.]
+Perm: [3 4 1]   6085 resident_time       20     1280     1360  end_t   127020   128300   129660  frame_num  [6351. 6415. 6483.]
+Perm: [3 4 1]   6086 resident_time       60     1600    13940  end_t   324160   325760   339700  frame_num  [16208. 16288. 16985.]
+Perm: [3 4 1]   6086 resident_time       40     1600    10220  end_t   466960   468560   478780  frame_num  [23348. 23428. 23939.]
+Perm: [3 4 1]   6087 resident_time       20     1000     5300  end_t    60260    61260    66560  frame_num  [3013. 3063. 3328.]
+Perm: [3 4 1]   6089 resident_time       20     1780     8260  end_t   433160   434940   443200  frame_num  [21658. 21747. 22160.]
+Perm: [3 4 1]   6090 resident_time       20     1420     9840  end_t   133640   135060   144900  frame_num  [6682. 6753. 7245.]
+Perm: [3 4 1]   6090 resident_time      260      640    20560  end_t   205640   206280   226840  frame_num  [10282. 10314. 11342.]
+Perm: [3 4 1]   6090 resident_time       20      720     3400  end_t   318720   319440   322840  frame_num  [15936. 15972. 16142.]
+Perm: [3 4 1]   6093 resident_time       80      440    23600  end_t     2520     2960    26560  frame_num  [ 126.  148. 1328.]
+Perm: [3 4 1]   6093 resident_time       40     1040    13480  end_t   157460   158500   171980  frame_num  [7873. 7925. 8599.]
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 110
+Ave current (pA)      : 35.24789
+Ave conductance (pS)  : 117.49295
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [4 3 1] safety check 1 for current down
+#################################
+Perm: [4 3 1]   5961 resident_time       20     2520       20  end_t    60100    62620    62640  frame_num  [3005. 3131. 3132.]
+Perm: [4 3 1]   5962 resident_time       20      900       20  end_t   449000   449900   449920  frame_num  [22450. 22495. 22496.]
+Perm: [4 3 1]   5963 resident_time      360     2680       20  end_t   191580   194260   194280  frame_num  [9579. 9713. 9714.]
+Perm: [4 3 1]   5963 resident_time       20     2480       40  end_t   332240   334720   334760  frame_num  [16612. 16736. 16738.]
+Perm: [4 3 1]   5963 resident_time      340     1760       20  end_t   439880   441640   441660  frame_num  [21994. 22082. 22083.]
+Perm: [4 3 1]   5967 resident_time       60     1280       20  end_t   371800   373080   373100  frame_num  [18590. 18654. 18655.]
+Perm: [4 3 1]   5969 resident_time      160      900       20  end_t    72600    73500    73520  frame_num  [3630. 3675. 3676.]
+Perm: [4 3 1]   5972 resident_time       20     2020       20  end_t   162420   164440   164460  frame_num  [8121. 8222. 8223.]
+Perm: [4 3 1]   5973 resident_time       60      920       20  end_t    19420    20340    20360  frame_num  [ 971. 1017. 1018.]
+Perm: [4 3 1]   5973 resident_time      320     2040       20  end_t   462060   464100   464120  frame_num  [23103. 23205. 23206.]
+Perm: [4 3 1]   5980 resident_time       20      660       20  end_t   200440   201100   201120  frame_num  [10022. 10055. 10056.]
+Perm: [4 3 1]   5980 resident_time      340     1540       20  end_t   292240   293780   293800  frame_num  [14612. 14689. 14690.]
+Perm: [4 3 1]   5983 resident_time       20     3360       20  end_t   384400   387760   387780  frame_num  [19220. 19388. 19389.]
+Perm: [4 3 1]   5986 resident_time      100      700       20  end_t   187860   188560   188580  frame_num  [9393. 9428. 9429.]
+Perm: [4 3 1]   5994 resident_time       20      900       20  end_t   128760   129660   129680  frame_num  [6438. 6483. 6484.]
+Perm: [4 3 1]   5994 resident_time       60      660       20  end_t   314140   314800   314820  frame_num  [15707. 15740. 15741.]
+Perm: [4 3 1]   5995 resident_time       20      480       20  end_t   259840   260320   260340  frame_num  [12992. 13016. 13017.]
+Perm: [4 3 1]   5996 resident_time       20      840       20  end_t   287600   288440   288460  frame_num  [14380. 14422. 14423.]
+Perm: [4 3 1]   5996 resident_time       20     2380       20  end_t   402460   404840   404860  frame_num  [20123. 20242. 20243.]
+Perm: [4 3 1]   5998 resident_time      100     1720       20  end_t   203000   204720   204740  frame_num  [10150. 10236. 10237.]
+Perm: [4 3 1]   5999 resident_time      240     1100       20  end_t   374040   375140   375160  frame_num  [18702. 18757. 18758.]
+Perm: [4 3 1]   6005 resident_time      100     2320       20  end_t   171000   173320   173340  frame_num  [8550. 8666. 8667.]
+Perm: [4 3 1]   6006 resident_time      740     1340       20  end_t   231340   232680   232700  frame_num  [11567. 11634. 11635.]
+Perm: [4 3 1]   6008 resident_time     1460     1160       20  end_t     6780     7940     7960  frame_num  [339. 397. 398.]
+Perm: [4 3 1]   6009 resident_time       20      840       20  end_t   488720   489560   489580  frame_num  [24436. 24478. 24479.]
+Perm: [4 3 1]   6011 resident_time       40      620       20  end_t   298880   299500   299520  frame_num  [14944. 14975. 14976.]
+Perm: [4 3 1]   6013 resident_time       60      480       20  end_t   461540   462020   462040  frame_num  [23077. 23101. 23102.]
+Perm: [4 3 1]   6015 resident_time       20     2340       20  end_t   198020   200360   200380  frame_num  [ 9901. 10018. 10019.]
+Perm: [4 3 1]   6016 resident_time      100     1040       20  end_t   189560   190600   190620  frame_num  [9478. 9530. 9531.]
+Perm: [4 3 1]   6018 resident_time     1300      680       20  end_t   332780   333460   333480  frame_num  [16639. 16673. 16674.]
+Perm: [4 3 1]   6021 resident_time       20     1060       20  end_t   100260   101320   101340  frame_num  [5013. 5066. 5067.]
+Perm: [4 3 1]   6021 resident_time      580      640       20  end_t   213680   214320   214340  frame_num  [10684. 10716. 10717.]
+Perm: [4 3 1]   6026 resident_time      120     2440       40  end_t   278580   281020   281060  frame_num  [13929. 14051. 14053.]
+Perm: [4 3 1]   6029 resident_time       20      780       20  end_t   162280   163060   163080  frame_num  [8114. 8153. 8154.]
+Perm: [4 3 1]   6030 resident_time       40      240       20  end_t   210660   210900   210920  frame_num  [10533. 10545. 10546.]
+Perm: [4 3 1]   6030 resident_time      420      400       20  end_t   271100   271500   271520  frame_num  [13555. 13575. 13576.]
+Perm: [4 3 1]   6032 resident_time      300     2920       20  end_t   158780   161700   161720  frame_num  [7939. 8085. 8086.]
+Perm: [4 3 1]   6040 resident_time      420      680       20  end_t   227540   228220   228240  frame_num  [11377. 11411. 11412.]
+Perm: [4 3 1]   6041 resident_time       60     2680       20  end_t    87960    90640    90660  frame_num  [4398. 4532. 4533.]
+Perm: [4 3 1]   6041 resident_time       20      500       20  end_t   212400   212900   212920  frame_num  [10620. 10645. 10646.]
+Perm: [4 3 1]   6041 resident_time       20      960       40  end_t   321360   322320   322360  frame_num  [16068. 16116. 16118.]
+Perm: [4 3 1]   6043 resident_time       40      540       60  end_t   477740   478280   478340  frame_num  [23887. 23914. 23917.]
+Perm: [4 3 1]   6044 resident_time      500     1580       40  end_t   335540   337120   337160  frame_num  [16777. 16856. 16858.]
+Perm: [4 3 1]   6046 resident_time       40     2840       20  end_t   208840   211680   211700  frame_num  [10442. 10584. 10585.]
+Perm: [4 3 1]   6048 resident_time       60     1060       20  end_t   471480   472540   472560  frame_num  [23574. 23627. 23628.]
+Perm: [4 3 1]   6048 resident_time       20      540       20  end_t   485780   486320   486340  frame_num  [24289. 24316. 24317.]
+Perm: [4 3 1]   6049 resident_time       80      280       20  end_t   391460   391740   391760  frame_num  [19573. 19587. 19588.]
+Perm: [4 3 1]   6050 resident_time       20     1480       20  end_t   398180   399660   399680  frame_num  [19909. 19983. 19984.]
+Perm: [4 3 1]   6054 resident_time      180      700       20  end_t   318160   318860   318880  frame_num  [15908. 15943. 15944.]
+Perm: [4 3 1]   6055 resident_time      220     2320       20  end_t   191000   193320   193340  frame_num  [9550. 9666. 9667.]
+Perm: [4 3 1]   6057 resident_time     3740     2340       40  end_t    20540    22880    22920  frame_num  [1027. 1144. 1146.]
+Perm: [4 3 1]   6061 resident_time       40     1140       20  end_t   204980   206120   206140  frame_num  [10249. 10306. 10307.]
+Perm: [4 3 1]   6070 resident_time       40     2180       60  end_t   447340   449520   449580  frame_num  [22367. 22476. 22479.]
+Perm: [4 3 1]   6074 resident_time      280      580       40  end_t   450380   450960   451000  frame_num  [22519. 22548. 22550.]
+Perm: [4 3 1]   6075 resident_time       40     1940       40  end_t   255740   257680   257720  frame_num  [12787. 12884. 12886.]
+Perm: [4 3 1]   6075 resident_time       40     2300       20  end_t   490500   492800   492820  frame_num  [24525. 24640. 24641.]
+Perm: [4 3 1]   6078 resident_time       80      980       20  end_t    23980    24960    24980  frame_num  [1199. 1248. 1249.]
+Perm: [4 3 1]   6081 resident_time       20      580       40  end_t    86820    87400    87440  frame_num  [4341. 4370. 4372.]
+Perm: [4 3 1]   6081 resident_time      140     2380       40  end_t   214640   217020   217060  frame_num  [10732. 10851. 10853.]
+Perm: [4 3 1]   6083 resident_time      660     1220       20  end_t   481120   482340   482360  frame_num  [24056. 24117. 24118.]
+Perm: [4 3 1]   6085 resident_time      120      580       20  end_t   386160   386740   386760  frame_num  [19308. 19337. 19338.]
+Perm: [4 3 1]   6086 resident_time      140     1400       20  end_t   212440   213840   213860  frame_num  [10622. 10692. 10693.]
+Perm: [4 3 1]   6087 resident_time      480     1440       20  end_t   133040   134480   134500  frame_num  [6652. 6724. 6725.]
+Perm: [4 3 1]   6090 resident_time       40     1260       20  end_t     3720     4980     5000  frame_num  [186. 249. 250.]
+Perm: [4 3 1]   6091 resident_time       80     1800       20  end_t   240580   242380   242400  frame_num  [12029. 12119. 12120.]
+Perm: [4 3 1]   6092 resident_time       40     1220       20  end_t   151120   152340   152360  frame_num  [7556. 7617. 7618.]
+Perm: [4 3 1]   6092 resident_time       20     1000       20  end_t   220860   221860   221880  frame_num  [11043. 11093. 11094.]
+Perm: [4 3 1]   6092 resident_time       20     1680       20  end_t   274200   275880   275900  frame_num  [13710. 13794. 13795.]
+Perm: [4 3 1]   6092 resident_time       20      400       20  end_t   298460   298860   298880  frame_num  [14923. 14943. 14944.]
+Perm: [4 3 1]   6093 resident_time      300     1220       20  end_t   305600   306820   306840  frame_num  [15280. 15341. 15342.]
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 70
+Ave current (pA)      : 22.43047
+Ave conductance (pS)  : 74.76824
+Sequence End
+###############################
+
+
+###############################
+# New sequence start: [1 4 3] safety check 2 for current down
+#################################
+#################################
+assumed voltage (mV) : 300.0
+simulation time (ns)  : 500.0
+ion permeation events : 0
+Ave current (pA)      : 0.00000
+Ave conductance (pS)  : 0.00000
+Sequence End
+###############################
+
