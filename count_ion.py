@@ -4,6 +4,7 @@ import mdtraj as md
 import numpy as np
 
 
+
 def potassium_state_assign_membrane(traj, top_ind, bottom_ind, ion_index):
     """
     :param traj: mdtraj.traj
@@ -82,58 +83,6 @@ def potassium_state_assign_cylider(top_ind, bottom_ind, center_ind,
         ions_state_dict[k][Z_Kion < boundary] = 4
     return ions_state_dict
 
-
-def potassium_state_assign_cylider_double(S01, S23, S45, center_ind,
-                                   traj, ion_index, rad=0.25, ):
-    """
-    :param rad: nm
-    :return: A dictionary with ion_state in each frame
-    #
-    #  3
-    ############################### top_ind
-    #          S01     |
-    #     2    |   1   |
-    #          |       |
-    #          |       |
-    #     -----S23-----|---
-    #          |   5   |
-    #          |       |
-    #          |    <->|
-    #          S45  rad|  center_ind for the xy position
-    ############################### bottom_ind
-    #     4
-    #
-    """
-    # initiate ions_state_dict
-    ions_state_dict = {}
-    for k in ion_index:
-        ions_state_dict[k] = np.zeros(traj.n_frames, dtype=int) + 2
-    # seperate 1 and 5
-    boundary = md.compute_center_of_mass(traj.atom_slice(S23))[:, 2]
-    for k in ion_index:
-        Z_Kion = traj.xyz[:, k, 2]
-        ions_state_dict[k][Z_Kion < boundary] = 5
-    # seperate the Cylinder 1/5 and 2
-    center = md.compute_center_of_mass(traj.atom_slice(center_ind))[:, :2]
-    for k in ion_index:
-        Kion_traj = traj.xyz[:, k, :2]
-        xy = Kion_traj - center
-        mask1 = xy[:, 0] ** 2 + xy[:, 1] ** 2 < rad ** 2
-        ions_state_dict[k][mask1] = 1
-    # check if ion is in 3
-    boundary = md.compute_center_of_mass(traj.atom_slice(S01))[:, 2]
-    for k in ion_index:
-        Z_Kion = traj.xyz[:, k, 2]
-        ions_state_dict[k][Z_Kion > boundary] = 3
-    # check if ion is in 4
-    boundary = md.compute_center_of_mass(traj.atom_slice(S45))[:, 2]
-    for k in ion_index:
-        Z_Kion = traj.xyz[:, k, 2]
-        ions_state_dict[k][Z_Kion < boundary] = 4
-
-
-
-    return ions_state_dict
 
 def assign_ion_state_chunk(xtc_file, stride, top, chunk, assign_fun=potassium_state_assign_cylider, **kwargs):
     """
@@ -231,52 +180,8 @@ def match_head_tail(ions_state, seq):
     return matched_dict_head, matched_dict_tail
 
 
-def auto_find_SF_index(traj, SF_seq = ["THR", "VAL", "GLY", "TYR", "GLY"]):
-    """
-    :param traj: md.traj with proper atom name
-    :param SF_seq: name of the sequence in SF, default: ["THR", "VAL", "GLY", "TYR", "GLY"]
-    :return: 0 base index of S01, S12, S23, S34, S45
-    """
-    top = traj.topology
-    S00 = []
-    S01 = []
-    S12 = []
-    S23 = []
-    S34 = []
-    S45 = []
-
-    for chain in top.chains:
-        res_list = [res for res in chain.residues]
-        for i in range(len(res_list) - 5):
-            if res_list[i].is_water:
-                break
-            bool1 = res_list[i].name == SF_seq[0]
-            bool2 = res_list[i + 1].name == SF_seq[1]
-            bool3 = res_list[i + 2].name == SF_seq[2]
-            bool4 = res_list[i + 3].name == SF_seq[3]
-            bool5 = res_list[i + 4].name == SF_seq[4]
-            if bool1 and bool2 and bool3 and bool4 and bool5:
-                # print(res_list[i  ])
-                # print([atom for atom in res_list[i].atoms if atom.name == "OG1"])
-                # print([atom for atom in res_list[i].atoms if atom.name == "O"])
-                # print(res_list[i+1])
-                # print([atom for atom in res_list[i+1].atoms if atom.name == "O"])
-                # print(res_list[i+2])
-                # print([atom for atom in res_list[i+2].atoms if atom.name == "O"])
-                # print(res_list[i+3])
-                # print([atom for atom in res_list[i+3].atoms if atom.name == "O"])
-
-                S45 += [atom.index for atom in res_list[i].atoms if atom.name == "OG1"]
-                S34 += [atom.index for atom in res_list[i].atoms if atom.name == "O"]
-                S23 += [atom.index for atom in res_list[i + 1].atoms if atom.name == "O"]
-                S12 += [atom.index for atom in res_list[i + 2].atoms if atom.name == "O"]
-                S01 += [atom.index for atom in res_list[i + 3].atoms if atom.name == "O"]
-                S00 += [atom.index for atom in res_list[i + 4].atoms if atom.name == "O"]
-    if len(S00) != 4 or len(S01) != 4 or len(S12) != 4 or len(S23) != 4 or len(S34) != 4 or len(S45) != 4:
-        print(len(S00), len(S01), len(S12), len(S23), len(S34), len(S45))
-        raise ValueError("SF auto detection Fail. The number of Oxygen selected for the SF boundary should be 4.")
-
-    return S00, S01, S12, S23, S34, S45
+def auto_find_SF_index(traj):
+    pass
 
 
 def find_P_index(traj):
@@ -309,7 +214,7 @@ def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep,
         matched_dict = match_seqs(ions_state, seq)
         for k in matched_dict:
             # print("K ion index", k)
-            # print()
+            #print()
             for i in matched_dict[k][0]:
                 print("Perm:",
                       seq,
@@ -332,6 +237,9 @@ def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep,
         print("")
 
 
+
+
+
 seq_list_dict = {"Cylinder": [(np.array([4, 1, 3]), "proper current up"),
                               (np.array([4, 2, 3]), "leak current up"),
                               (np.array([3, 1, 4]), "proper current down"),
@@ -352,8 +260,10 @@ seq_list_dict = {"Cylinder": [(np.array([4, 1, 3]), "proper current up"),
                               ]
                  }
 
+
+
 if __name__ == "__main__":
-    # print("This is the main")
+    #print("This is the main")
     parser = argparse.ArgumentParser()
     parser.add_argument("-pdb",
                         dest="top",
@@ -401,12 +311,6 @@ if __name__ == "__main__":
                         metavar="index",
                         help="1 base atom index for the bottom of the cylinder",
                         type=str)
-    parser.add_argument("-SF_seq",
-                        dest="SF_seq",
-                        metavar="list of string",
-                        help="THR VAL GLY TYR GLY",
-                        type=str,
-                        nargs=5)
     parser.add_argument("-algorithm",
                         dest="alg",
                         choices=["Cylinder", "Membrane"],
@@ -426,6 +330,7 @@ Membrane:
                         default=None,
                         help="Only read every stride-th frame")
 
+
     args = parser.parse_args()
     # read arg
     top = args.top.name
@@ -433,7 +338,6 @@ Membrane:
     K_name = args.K_name
     chunk = args.chunk
     cylinderRad = args.cylRAD
-    SF_seq = args.SF_seq
     print("#################################################################################")
     print("PDB top file:", args.top.name)
     print("xtc traj file:", xtc_full_max)
@@ -441,7 +345,6 @@ Membrane:
     print("The number of frame loading each time will be:", chunk)
     print("The Voltage in this simulation is: ", args.volt, "mV")
     print("XTC traj will be strided:", args.stride)
-    print("The sequence of the SF is ", SF_seq)
     print("#################################################################################")
 
     traj_pdb = md.load(top)
@@ -452,12 +355,11 @@ Membrane:
 
     # prepare atom index for cylinder
     if args.alg == "Cylinder":
-        if (args.SF_seq is None):
-            raise ValueError("Please provide -SF_seq")
+        if args.cylTOP is None or args.cylBOT is None:
+            raise ValueError("Pls give -cylinderTop and -cylinderBot")
         print("#################################################################################")
-        S00, S01, S12, S23, S34, S45 = auto_find_SF_index(traj_pdb, SF_seq)
-        top_ind = S01
-        bottom_ind = S45
+        top_ind = [int(i) - 1 for i in args.cylTOP.split()]  # mdtraj needs 0 base index
+        bottom_ind = [int(i) - 1 for i in args.cylBOT.split()]  # mdtraj needs 0 base index
         center_ind = top_ind + bottom_ind
         ion_index = traj_pdb.topology.select('name ' + K_name)
         print("Number of ions found", len(ion_index))
