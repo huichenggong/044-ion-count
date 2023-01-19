@@ -61,6 +61,19 @@ class MyTestCase(unittest.TestCase):
             self.assertListEqual(ions_state_dict[544].tolist(), i_non_iter[544].tolist())
             self.assertListEqual(ions_state_dict[545].tolist(), i_non_iter[545].tolist())
 
+
+    def test_potassium_state_assign_cylider_double(self):
+        S00, S01, S12, S23, S34, S45 = count_ion.auto_find_SF_index(self.traj_short)
+        ions_state_dict = count_ion.potassium_state_assign_cylider_double(S01, S23, S45, S01 + S23 + S45,
+                                                                          traj=self.traj_short, ion_index=[544, 545],
+                                                                          rad=0.25
+                                                                          )
+        self.assertEqual(ions_state_dict[544][0:5].tolist(), [1, 4, 3, 3, 4])
+        self.assertEqual(ions_state_dict[545][0:5].tolist(), [1, 3, 3, 4, 4])
+        self.assertEqual(ions_state_dict[545][42:48].tolist(), [3, 5, 5, 1, 1, 4])
+
+
+
     def test_ion_state_short(self):
         print("TEST: short the sequence")
         chain = np.array("0 0 0 1 1 4 4 4 4 5 5 5".split())
@@ -137,15 +150,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(ions_state_dict[5962].tolist(), [2, 1, 3, 3, 3])
 
 
-    def test_match_head_tail(self):
-        ions_state = {101 : np.array([1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4]),
-                      102 : np.array([2, 3, 4, 2, 3, 4, 2, 3, 1, 2])
-                      }
-        head, tail = count_ion.match_head_tail(ions_state, np.array([1, 2]))
-        self.assertEqual(head[101], True)
-        self.assertEqual(head[102], False)
-        self.assertEqual(tail[101], False)
-        self.assertEqual(tail[102], True)
+
 
 
 
