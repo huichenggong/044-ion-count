@@ -52,7 +52,7 @@ def read_cylinder(cylinder_file):
     perm_list = []
     with open(cylinder_file) as f:
         for line in f:
-            if "Perm: [4 1 3]" in line:
+            if ("Perm: [4 1 3]" in line) or ("Perm: [5 1 3]" in line) or ("Perm: [4 5 1]" in line):
                 line = line.rstrip()
                 words = line.split()
                 at_index = int(words[4])
