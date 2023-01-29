@@ -277,7 +277,7 @@ if __name__ == "__main__":
     print("Number of ions found", len(ion_index))
     print("The ion index (0 base):", ion_index)
     wat_index = traj_pdb.topology.select("water and name O")
-    print("Number of water(O) found")
+    print("Number of water(O) found", len(wat_index))
     print("S01 of the cylinder")
     for at in S01:
         print(traj_pdb.topology.atom(at), at)
