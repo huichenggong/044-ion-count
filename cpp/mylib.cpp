@@ -143,7 +143,7 @@ int Sfilter::assign_state_double(const std::vector<int> &S01,
         } // compute the COM_xy for center
         //std::cout << "COM x=" << com_center_x << ", y=" << com_center_y << ", z=" << com_center_z << std::endl ;
     // loop over ions and assign state(s)
-    std::vector<int> ion_state_frame_vec(ion_index.size(), 2) ;
+    std::vector<short int> ion_state_frame_vec(ion_index.size(), 2) ;
     for(size_t i=0; i < ion_index.size(); i++){
         int at_index = ion_index.at(i);
         real atom_x = (*(x + at_index))[0] ;
@@ -163,7 +163,7 @@ int Sfilter::assign_state_double(const std::vector<int> &S01,
     ion_state_vec.push_back(ion_state_frame_vec);
 
     // loop over water(O) and assign state(s)
-    std::vector<int> wat_state_frame_vec(wat_index.size(), 2) ;
+    std::vector<short int> wat_state_frame_vec(wat_index.size(), 2) ;
     for(size_t i=0; i < wat_index.size(); i++){
         int at_index = wat_index.at(i);
         real atom_x = (*(x + at_index))[0] ;

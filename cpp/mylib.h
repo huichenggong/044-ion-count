@@ -25,8 +25,8 @@ private:
 
 public:
     std::vector<real> distance_vec ;
-    std::vector<std::vector<int>> ion_state_vec ;
-    std::vector<std::vector<int>> wat_state_vec ;
+    std::vector<std::vector<short int>> ion_state_vec ;
+    std::vector<std::vector<short int>> wat_state_vec ;
 
     real       time;
     int64_t    step;
