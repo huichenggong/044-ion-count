@@ -52,12 +52,25 @@ def read_cylinder(cylinder_file):
     perm_list = []
     with open(cylinder_file) as f:
         for line in f:
-            if ("Perm: [4 1 3]" in line) or ("Perm: [5 1 3]" in line) or ("Perm: [4 5 1]" in line):
+            if ("Perm: [4 1 3]" in line):
                 line = line.rstrip()
                 words = line.split()
                 at_index = int(words[4])
                 time = [float(words[10]), float(words[11])]
                 perm_list.append(PermEvent(at_index, time))
+            elif ("Perm: [5 1 3]" in line):
+                line = line.rstrip()
+                words = line.split()
+                at_index = int(words[4])
+                time = [0, float(words[11])]
+                perm_list.append(PermEvent(at_index, time))
+            elif ("Perm: [4 5 1]" in line):
+                line = line.rstrip()
+                words = line.split()
+                at_index = int(words[4])
+                time = [float(words[10]), float(words[12])*1.05]
+                perm_list.append(PermEvent(at_index, time))
+
     perm_list = sorted(perm_list, key=lambda x: x.time[0])
     return perm_list
 
@@ -101,13 +114,13 @@ def longest_common_subsequence(seq_xtck, seq_cylinder):
         seq, length = longest_common_subsequence(seq_xtck[:-1], seq_cylinder)
         seq.append([seq_xtck[-1], None])
         return seq, length
-    elif equal(seq_xtck[-2], seq_cylinder[-1]):
+    elif len(seq_xtck) >= 2 and equal(seq_xtck[-2], seq_cylinder[-1]):
         seq, length = longest_common_subsequence(seq_xtck[:-2], seq_cylinder[:-1])
         seq.append([seq_xtck[-2], seq_cylinder[-1]])
         length += 1
         seq.append([seq_xtck[-1], None])
         return seq, length
-    elif equal(seq_xtck[-1], seq_cylinder[-2]):
+    elif len(seq_cylinder) >= 2 and equal(seq_xtck[-1], seq_cylinder[-2]):
         seq, length = longest_common_subsequence(seq_xtck[:-1], seq_cylinder[:-2])
         seq.append([seq_xtck[-1], seq_cylinder[-2]])
         length += 1
