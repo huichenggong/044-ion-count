@@ -251,6 +251,13 @@ if __name__ == "__main__":
                         help="THR VAL GLY TYR GLY",
                         type=str,
                         nargs=5)
+    parser.add_argument("-check_wat",
+                        dest="check_wat",
+                        choices=["y", "n"],
+                        type=str,
+                        default="n",
+                        help="""check water or not""",
+                        )
 
     args = parser.parse_args()
     # read arg
@@ -278,6 +285,9 @@ if __name__ == "__main__":
     print("The ion index (0 base):", ion_index)
     wat_index = traj_pdb.topology.select("water and name O")
     print("Number of water(O) found", len(wat_index))
+    print("Checking water?", args.check_wat)
+    if args.check_wat == "n":
+        wat_index = []
     print("S01 of the cylinder")
     for at in S01:
         print(traj_pdb.topology.atom(at), at)
