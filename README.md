@@ -19,7 +19,9 @@ cd ./test/03-find_SF_from_PDB/04-NaK2K-more/
     -K POT -volt 300 -chunk 1000 \
     -SF_seq THR VAL GLY TYR GLY > k_Cylinder_03.out
 
-# source GMXRC(2022.4) before using the c++ version
+
+conda install eigen pybind11 mdtraj numpy -c conda-forge
+source gromacs2022.4_INSTALLATION_DIR/bin/GMXRC
 ../../../count_ion_SF_cpp.py -pdb em.pdb -xtc fix_atom_c_kpro.xtc -SF_seq THR VAL GLY TYR GLY -K POT > count_ion_SF_cpp/count.out
 
 match_result.py \
