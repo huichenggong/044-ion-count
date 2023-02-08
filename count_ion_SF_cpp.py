@@ -9,7 +9,6 @@ lib = os.path.join(os.path.dirname(__file__), "cpp/cmake-build-debug/")
 import sys
 
 sys.path.append(lib)
-from PYSfilter import Sfilter
 
 
 #
@@ -62,11 +61,11 @@ def match_tail(ions_state15, seq, forbidden):
     return matched
 
 
-def auto_find_SF_index(traj, SF_seq=["THR", "VAL", "GLY", "TYR", "GLY"]):
+def auto_find_SF_index(traj, SF_seq=["THR", "VAL", "GLY", "TYR", "GLY"], SF_seq2=[]):
     """
     :param traj: md.traj with proper atom name
     :param SF_seq: name of the sequence in SF, default: ["THR", "VAL", "GLY", "TYR", "GLY"]
-    :return: 0 base index of S01, S12, S23, S34, S45
+    :return: 0 base index of S00, S01, S12, S23, S34, S45
     """
     top = traj.topology
     S00 = []
@@ -93,6 +92,20 @@ def auto_find_SF_index(traj, SF_seq=["THR", "VAL", "GLY", "TYR", "GLY"]):
                 S12 += [atom.index for atom in res_list[i + 2].atoms if atom.name == "O"]
                 S01 += [atom.index for atom in res_list[i + 3].atoms if atom.name == "O"]
                 S00 += [atom.index for atom in res_list[i + 4].atoms if atom.name == "O"]
+            elif len(SF_seq2) > 0:
+                bool1 = res_list[i].name == SF_seq2[0]
+                bool2 = res_list[i + 1].name == SF_seq2[1]
+                bool3 = res_list[i + 2].name == SF_seq2[2]
+                bool4 = res_list[i + 3].name == SF_seq2[3]
+                bool5 = res_list[i + 4].name == SF_seq2[4]
+                if bool1 and bool2 and bool3 and bool4 and bool5:
+                    S45 += [atom.index for atom in res_list[i].atoms if atom.name == "OG1"]
+                    S34 += [atom.index for atom in res_list[i].atoms if atom.name == "O"]
+                    S23 += [atom.index for atom in res_list[i + 1].atoms if atom.name == "O"]
+                    S12 += [atom.index for atom in res_list[i + 2].atoms if atom.name == "O"]
+                    S01 += [atom.index for atom in res_list[i + 3].atoms if atom.name == "O"]
+                    S00 += [atom.index for atom in res_list[i + 4].atoms if atom.name == "O"]
+
     if len(S00) != 4 or len(S01) != 4 or len(S12) != 4 or len(S23) != 4 or len(S34) != 4 or len(S45) != 4:
         print(len(S00), len(S01), len(S12), len(S23), len(S34), len(S45))
         raise ValueError("SF auto detection Fail. The number of Oxygen selected for the SF boundary should be 4.")
@@ -180,6 +193,89 @@ def match_seqs(ions_state, seq):
         matched_dict[k] = match_sequence_numpy(i_state, seq)
     return matched_dict
 
+
+def find_K_index(traj_pdb, K_name):
+    return traj_pdb.topology.select('name ' + K_name)
+
+
+def find_water_O_index(traj_pdb):
+    return traj_pdb.topology.select("water and name O")
+
+
+def assign_state_12345_cpp(xtc_full_max, ion_index, wat_index, cylinderRad, S01, S23, S45):
+    from PYSfilter import Sfilter
+    SF = Sfilter(xtc_full_max)
+    SF.assign_state_double(S01, S23, S45,
+                           S01 + S23 + S45,
+                           ion_index,
+                           wat_index, cylinderRad
+                           )
+    #print("Simulation time (ps)    :", SF.time)
+    ions_state_dict = ion_state_list_2_dict(SF.ion_state_list, ion_index)
+    wats_state_dict = ion_state_list_2_dict(SF.wat_state_list, wat_index)
+    traj_timestep = SF.time / (len(ions_state_dict[ion_index[0]]) - 1)
+    #print("Traj time step (ps/frame):", traj_timestep)
+    return ions_state_dict, wats_state_dict, traj_timestep
+
+
+def assign_state_12345_py(traj, ion_index, wat_index, cylinderRad, S01, S23, S45):
+    # initiate ions_state_dict
+    ions_state_dict = {}
+    wats_state_dict = {}
+    for index, state_dict in ((ion_index, ions_state_dict), (wat_index, wats_state_dict)):
+        for k in index: # initiate state_dict to 1
+            state_dict[k] = np.zeros(traj.n_frames, dtype=int) + 1
+        # seperate 1 and 5
+        boundary = md.compute_center_of_mass(traj.atom_slice(S23))[:, 2]
+        for k in index:
+            state_dict[k][traj.xyz[:, k, 2] < boundary] = 5
+        # seperate the Cylinder 1/5 and 2
+        center = md.compute_center_of_mass(traj.atom_slice(S01 + S23 + S45))[:, :2]
+        for k in index:
+            Kion_traj = traj.xyz[:, k, :2]
+            xy = Kion_traj - center
+            mask1 = xy[:, 0] ** 2 + xy[:, 1] ** 2 > cylinderRad ** 2
+            state_dict[k][mask1] = 2
+        # check if ion is in 3
+        boundary = md.compute_center_of_mass(traj.atom_slice(S01))[:, 2]
+        for k in index:
+            state_dict[k][traj.xyz[:, k, 2] > boundary] = 3
+        # check if ion is in 4
+        boundary = md.compute_center_of_mass(traj.atom_slice(S45))[:, 2]
+        for k in index:
+            ions_state_dict[k][traj.xyz[:, k, 2] < boundary] = 4
+    return ions_state_dict, wats_state_dict
+
+
+
+def assign_ion_state_chunk(top, xtc_file, stride, chunk, assign_fun=assign_state_12345_py, **kwargs):
+    """
+    :param xtc_file:
+    :param top:
+    :param chunk:
+    :param assign_fun: must take traj as keyword argument
+    :param kwargs: all the keyword argument for 'assigh_fun'
+    :return:
+    """
+    count = 0
+    for traj_chunk in md.iterload(xtc_file, top=top, chunk=chunk, stride=stride):
+        print(".", end='')
+        ions_state_dict_tmp, wats_state_dict_tmp = assign_fun(**kwargs, traj=traj_chunk)
+        if count == 0:
+            ions_state_dict = ions_state_dict_tmp
+            wats_state_dict = wats_state_dict_tmp
+            traj_timestep = traj_chunk.timestep
+            count += 1
+        else:
+            for k in ions_state_dict:
+                ions_state_dict[k] = np.concatenate((ions_state_dict[k], ions_state_dict_tmp[k]))
+            for o in wats_state_dict:
+                wats_state_dict[o] = np.concatenate((wats_state_dict[o], wats_state_dict_tmp[o]))
+            count += 1
+    print(".")
+    return ions_state_dict, wats_state_dict, traj_timestep
+
+
 def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep, voltage, stride=None):
     for seq, name in seq_list:
         print("\n###############################")
@@ -199,6 +295,7 @@ def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep,
         current = count * 1.602176634 / end_time[k][-1] * 100000.0  # pA
         conductance = current * 1000 / voltage  # pS
         print_conductance_summary(voltage, end_time, k, count, current, conductance)
+
 
 def print_conductance_summary(voltage, end_time, k, count, current, conductance):
     print("#################################")
@@ -258,6 +355,13 @@ if __name__ == "__main__":
                         default="n",
                         help="""check water or not""",
                         )
+    parser.add_argument("-backend",
+                        dest="backend",
+                        choices=["cpp", "py"],
+                        type=str,
+                        default="cpp",
+                        help="""choose backend""",
+                        )
 
     args = parser.parse_args()
     # read arg
@@ -280,10 +384,10 @@ if __name__ == "__main__":
         raise ValueError("Please provide -SF_seq")
     print("#################################################################################")
     S00, S01, S12, S23, S34, S45 = auto_find_SF_index(traj_pdb, SF_seq)
-    ion_index = traj_pdb.topology.select('name ' + K_name)
+    ion_index = find_K_index(traj_pdb, K_name)
     print("Number of ions found", len(ion_index))
     print("The ion index (0 base):", ion_index)
-    wat_index = traj_pdb.topology.select("water and name O")
+    wat_index = find_water_O_index(traj_pdb)
     print("Number of water(O) found", len(wat_index))
     print("Checking water?", args.check_wat)
     if args.check_wat == "n":
@@ -300,17 +404,21 @@ if __name__ == "__main__":
 
     # load xtc iteratively and assign state for each ion (c++)
     print("Assign state to each ion for each frame")
-    SF = Sfilter(xtc_full_max)
-    SF.assign_state_double(S01, S23, S45,
-                           S01 + S23 + S45,
-                           ion_index,
-                           wat_index, cylinderRad
-                           )
-    print("Simulation time (ps)    :", SF.time)
-    ions_state_dict = ion_state_list_2_dict(SF.ion_state_list, ion_index)
-    wats_state_dict = ion_state_list_2_dict(SF.wat_state_list, wat_index)
-
-    traj_timestep = SF.time / (len(ions_state_dict[ion_index[0]]) - 1)
+    if args.backend == "cpp":
+        ions_state_dict, wats_state_dict, traj_timestep = assign_state_12345_cpp(xtc_full_max, ion_index, wat_index, cylinderRad, S01, S23, S45)
+    else:
+        ions_state_dict, wats_state_dict, traj_timestep = assign_ion_state_chunk(top=top,
+                                                                                 xtc_file=xtc_full_max,
+                                                                                 stride=1,
+                                                                                 chunk=1000,
+                                                                                 assign_fun=assign_state_12345_py,
+                                                                                 ion_index=ion_index,
+                                                                                 wat_index=wat_index,
+                                                                                 cylinderRad=cylinderRad,
+                                                                                 S01=S01,
+                                                                                 S23=S23,
+                                                                                 S45=S45
+                                                                                 )
     print("Traj time step (ps/frame):", traj_timestep)
 
     ions_state15, ions_resident_time15, end_time15 = ion_state_short_map(ions_state_dict, traj_timestep)
