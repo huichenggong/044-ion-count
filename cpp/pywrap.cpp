@@ -15,9 +15,6 @@ PYBIND11_MODULE(PYSfilter, m) {
     py::class_<Sfilter>(m, "Sfilter")
             .def(py::init<std::string>())
             .def("get_file_name", &Sfilter::get_file_name, py::call_guard<py::gil_scoped_release>())
-            .def("distance", &Sfilter::distance, py::call_guard<py::gil_scoped_release>())
-            .def("get_distance", &Sfilter::get_distance, py::call_guard<py::gil_scoped_release>()) // remove this later
-            .def("count", &Sfilter::count, py::call_guard<py::gil_scoped_release>())
             .def("assign_state_double", &Sfilter::assign_state_double, py::call_guard<py::gil_scoped_release>())
             .def_readonly("distance_vec", &Sfilter::distance_vec, byref) // remove this later
             .def_readonly("ion_state_list", &Sfilter::ion_state_vec, byref)

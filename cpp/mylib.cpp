@@ -5,12 +5,10 @@
 #include <cmath>
 #include <vector>
 #include <Eigen/Core>
-#include <pybind11/pybind11.h>
-#include <pybind11/numpy.h>
+#include <tuple>
 
 #include "gromacs/fileio/xtcio.h"
 
-namespace py = pybind11;
 
 
 Sfilter::Sfilter( std::string file_name_in){
@@ -23,55 +21,36 @@ std::string Sfilter::get_file_name(){
     return xtc_file_name;
 }
 
-int Sfilter::distance(int index_a, int index_b) {
-    //std::vector<real> distance_vec ;
-    int64_t    step;
-    real       time;
-    matrix     box;
-    rvec*      x;
-    real       prec;
-    gmx_bool   bOK;
-    int answer = read_first_xtc(xdrFile,&natoms,&step,&time,box,&x,&prec,&bOK);
-    if ( not answer){
-        return 1;
+
+
+real com_z(const std::vector<int> &index, rvec* x){
+    real com_z = 0.0;
+    for(auto i : index){
+        com_z += (*(x+i))[2];
     }
-    if (index_a>natoms-1 or index_b>natoms-1){
-        return 2;
-    }
-    do
-    {
-        real dist_tmp_x = ((*(x+index_a))[0] - (*(x+index_b))[0]);
-        real dist_tmp_y = ((*(x+index_a))[1] - (*(x+index_b))[1]);
-        real dist_tmp_z = ((*(x+index_a))[2] - (*(x+index_b))[2]);
-        real dist_tmp = sqrt(
-                dist_tmp_x*dist_tmp_x
-                +dist_tmp_y*dist_tmp_y
-                +dist_tmp_z*dist_tmp_z);
-        distance_vec.push_back(dist_tmp);
-    } while (read_next_xtc(xdrFile, natoms, &step, &time, box, x, &prec, &bOK) != 0);
-    return 0 ;
+    com_z /= index.size();
+    return com_z ;
 }
 
-Eigen::VectorXf Sfilter::get_distance(){
-    //std::vector<real> * v = &distance_vec;
-    //auto capsule = py::capsule(v, [](void *v) { delete reinterpret_cast<std::vector<real>*>(v); });
-    Eigen::Vector3f v2(distance_vec.data());
-    return v2 ;
+std::tuple<real,real> com_xy(const std::vector<int> &index, rvec* x, real &com_x, real &com_y){
+    for(auto i : index){
+        com_x += (*(x+i))[0];
+        com_y += (*(x+i))[1];
+    }
+    com_x /= index.size();
+    com_y /= index.size();
+    return std::make_tuple(com_x,com_y) ;
 }
 
-int Sfilter::count(){
-    distance_vec.at(0) += 100 ;
-    return 0 ;
-}
 
 int Sfilter::assign_state_double(const std::vector<int> &S01,
-                                  const std::vector<int> &S23,
-                                  const std::vector<int> &S45,
-                                  const std::vector<int> &center,
-                                  const std::vector<int> &ion_index,
-                                  const std::vector<int> &wat_index,
-                                  const float rad
-                                  ){
+                                 const std::vector<int> &S23,
+                                 const std::vector<int> &S45,
+                                 const std::vector<int> &center,
+                                 const std::vector<int> &ion_index,
+                                 const std::vector<int> &wat_index,
+                                 const float rad
+                                 ){
 
     matrix     box;
     rvec*      x;
@@ -93,55 +72,14 @@ int Sfilter::assign_state_double(const std::vector<int> &S01,
 
     do
     {
-        real com_S01_z = 0.0;
-        real com_S23_z = 0.0;
-        real com_S45_z = 0.0;
-        {
-            int count = 0;
-            for(auto i : S01){
-                com_S01_z += (*(x + i))[2] ;
-                count += 1;
-            }
-            com_S01_z /= count ;
-
-            count = 0;
-            for(auto i : S23){
-                com_S23_z += (*(x + i))[2] ;
-                count += 1;
-            }
-            com_S23_z /= count ;
-
-            count = 0;
-            for(auto i : S45){
-                com_S45_z += (*(x + i))[2] ;
-                count += 1;
-            }
-            com_S45_z /= count ;
-        } // compute the COM_z for each boundary
-        //std::cout << "Z boundary :" << com_S01_z << ", " << com_S23_z << ", " << com_S45_z << std::endl ;
-        real com_center_x = 0.0;
-        real com_center_y = 0.0;
-        {
-            int count = 0 ;
-            for(auto i : S01){
-                com_center_x += (*(x + i))[0] ;
-                com_center_y += (*(x + i))[1] ;
-                count += 1;
-            }
-            for(auto i : S23){
-                com_center_x += (*(x + i))[0] ;
-                com_center_y += (*(x + i))[1] ;
-                count += 1;
-            }
-            for(auto i : S45){
-                com_center_x += (*(x + i))[0] ;
-                com_center_y += (*(x + i))[1] ;
-                count += 1;
-            }
-            com_center_x /= count;
-            com_center_y /= count;
-        } // compute the COM_xy for center
-        //std::cout << "COM x=" << com_center_x << ", y=" << com_center_y << ", z=" << com_center_z << std::endl ;
+        // compute the COM_z for each boundary
+        real com_S01_z = com_z(S01, x);
+        real com_S23_z = com_z(S23, x);
+        real com_S45_z = com_z(S45, x);
+        // compute the COM_xy for the center
+        real com_center_x=0.0;
+        real com_center_y=0.0;
+        com_xy(center, x, com_center_x, com_center_y);
     // loop over ions and assign state(s)
     std::vector<short int> ion_state_frame_vec(ion_index.size(), 2) ;
     for(size_t i=0; i < ion_index.size(); i++){

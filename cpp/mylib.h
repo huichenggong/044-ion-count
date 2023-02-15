@@ -8,14 +8,12 @@
 #include <cmath>
 #include <vector>
 #include <Eigen/Core>
-#include <pybind11/pybind11.h>
-#include <pybind11/numpy.h>
+
 
 #include "gromacs/fileio/xtcio.h"
 
 
 
-namespace py = pybind11;
 
 class Sfilter {
 private:
@@ -33,9 +31,6 @@ public:
 
     Sfilter( std::string file_name_in) ;
     std::string get_file_name();
-    int distance(int index_a, int index_b);
-    int count();
-    Eigen::VectorXf get_distance();
     int assign_state_double(const std::vector<int> &S01,
                             const std::vector<int> &S23,
                             const std::vector<int> &S45,
@@ -47,5 +42,8 @@ public:
 
     ~Sfilter();
 };
+
+real com_z(const std::vector<int> &index, rvec* x);
+std::tuple<real,real> com_xy(const std::vector<int> &index, rvec* x);
 
 #endif //SELECTIVITY_FILTER_MYLIB_H
