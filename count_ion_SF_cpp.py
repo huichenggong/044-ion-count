@@ -154,14 +154,18 @@ def ion_state_short_map(ions_state_dict, traj_timestep):
     return ions_state, ions_resident_time, end_time
 
 
-def print_seq_str(seq, k, ions_resident_time, end_time, length, i, traj_timestep):
+def print_seq_str(seq, k, ions_resident_time, end_time, i, traj_timestep):
+    length = len(seq)
     print("Perm:",
           seq,
           " %5d" % (k + 1),  # 1 base index
-          "resident_time %8d %8d %8d " % tuple(ions_resident_time[k][i:i + length]),
-          "end_t %8d %8d %8d " % tuple(end_time[k][i:i + length]),
-          "frame_num ", end_time[k][i:i + length] / traj_timestep
-          )
+          "resident_time", end="")
+    for t in ions_resident_time[k][i:i + length]:
+        print(" %8d" % t, end="")
+    print("  end_t", end="")
+    for t in end_time[k][i:i + length]:
+        print(" %8d" % t, end="")
+    print("  frame_num ", end_time[k][i:i + length] / traj_timestep)
 
 
 def match_sequence_numpy(arr, seq):
@@ -243,7 +247,7 @@ def assign_state_12345_py(traj, ion_index, wat_index, cylinderRad, S01, S23, S45
         # check if ion is in 4
         boundary = md.compute_center_of_mass(traj.atom_slice(S45))[:, 2]
         for k in index:
-            ions_state_dict[k][traj.xyz[:, k, 2] < boundary] = 4
+            state_dict[k][traj.xyz[:, k, 2] < boundary] = 4
     return ions_state_dict, wats_state_dict
 
 
@@ -254,7 +258,7 @@ def assign_ion_state_chunk(top, xtc_file, stride, chunk, assign_fun=assign_state
     :param top:
     :param chunk:
     :param assign_fun: must take traj as keyword argument
-    :param kwargs: all the keyword argument for 'assigh_fun'
+    :param kwargs: all the keyword argument for 'assign_fun'
     :return:
     """
     count = 0
@@ -290,7 +294,7 @@ def print_seq(seq_list, ions_state, ions_resident_time, end_time, traj_timestep,
             # print("K ion index", k)
             # print()
             for i in matched_dict[k][0]:
-                print_seq_str(seq, k, ions_resident_time, end_time, length, i, traj_timestep)
+                print_seq_str(seq, k, ions_resident_time, end_time, i, traj_timestep)
                 count += 1
         current = count * 1.602176634 / end_time[k][-1] * 100000.0  # pA
         conductance = current * 1000 / voltage  # pS
@@ -410,7 +414,7 @@ if __name__ == "__main__":
         ions_state_dict, wats_state_dict, traj_timestep = assign_ion_state_chunk(top=top,
                                                                                  xtc_file=xtc_full_max,
                                                                                  stride=1,
-                                                                                 chunk=1000,
+                                                                                 chunk=500,
                                                                                  assign_fun=assign_state_12345_py,
                                                                                  ion_index=ion_index,
                                                                                  wat_index=wat_index,
@@ -442,14 +446,14 @@ if __name__ == "__main__":
             # print("K ion index", k)
             # print()
             for i in matched[k][0]:
-                print_seq_str(seq, k, ions_resident_time15, end_time15, len(seq), i, traj_timestep)
+                print_seq_str(seq, k, ions_resident_time15, end_time15, i, traj_timestep)
                 count += 1
     # check permeation in the middle
     seq = np.array([4, 1, 3])
     matched_dict = match_seqs(ions_state14, seq)
     for k in matched_dict:
         for i in matched_dict[k][0]:
-            print_seq_str(seq, k, ions_resident_time14, end_time14, len(seq), i, traj_timestep)
+            print_seq_str(seq, k, ions_resident_time14, end_time14, i, traj_timestep)
             count += 1
     current = count * 1.602176634 / end_time14[k][-1] * 100000.0  # pA
     conductance = current * 1000 / args.volt  # pS
@@ -471,14 +475,14 @@ if __name__ == "__main__":
             # print("K ion index", k)
             # print()
             for i in matched[k][0]:
-                print_seq_str(seq, k, ions_resident_time15, end_time15, len(seq), i, traj_timestep)
+                print_seq_str(seq, k, ions_resident_time15, end_time15, i, traj_timestep)
                 count += 1
     # check permeation in the middle
     seq = np.array([3, 1, 4])
     matched_dict = match_seqs(ions_state14, seq)
     for k in matched_dict:
         for i in matched_dict[k][0]:
-            print_seq_str(seq, k, ions_resident_time14, end_time14, len(seq), i, traj_timestep)
+            print_seq_str(seq, k, ions_resident_time14, end_time14, i, traj_timestep)
             count += 1
     current = count * 1.602176634 / end_time14[k][-1] * 100000.0  # pA
     conductance = current * 1000 / args.volt  # pS
