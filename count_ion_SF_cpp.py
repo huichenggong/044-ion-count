@@ -214,11 +214,11 @@ def assign_state_12345_cpp(xtc_full_max, ion_index, wat_index, cylinderRad, S01,
                            ion_index,
                            wat_index, cylinderRad
                            )
-    #print("Simulation time (ps)    :", SF.time)
+    # print("Simulation time (ps)    :", SF.time)
     ions_state_dict = ion_state_list_2_dict(SF.ion_state_list, ion_index)
     wats_state_dict = ion_state_list_2_dict(SF.wat_state_list, wat_index)
     traj_timestep = SF.time / (len(ions_state_dict[ion_index[0]]) - 1)
-    #print("Traj time step (ps/frame):", traj_timestep)
+    # print("Traj time step (ps/frame):", traj_timestep)
     return ions_state_dict, wats_state_dict, traj_timestep
 
 
@@ -227,7 +227,7 @@ def assign_state_12345_py(traj, ion_index, wat_index, cylinderRad, S01, S23, S45
     ions_state_dict = {}
     wats_state_dict = {}
     for index, state_dict in ((ion_index, ions_state_dict), (wat_index, wats_state_dict)):
-        for k in index: # initiate state_dict to 1
+        for k in index:  # initiate state_dict to 1
             state_dict[k] = np.zeros(traj.n_frames, dtype=int) + 1
         # seperate 1 and 5
         boundary = md.compute_center_of_mass(traj.atom_slice(S23))[:, 2]
@@ -249,7 +249,6 @@ def assign_state_12345_py(traj, ion_index, wat_index, cylinderRad, S01, S23, S45
         for k in index:
             state_dict[k][traj.xyz[:, k, 2] < boundary] = 4
     return ions_state_dict, wats_state_dict
-
 
 
 def assign_ion_state_chunk(top, xtc_file, stride, chunk, assign_fun=assign_state_12345_py, **kwargs):
@@ -324,7 +323,7 @@ if __name__ == "__main__":
                         required=True)
     parser.add_argument("-xtc",
                         dest="traj",
-                        metavar="traj.xtc",
+                        metavar="fix_c.xtc",
                         help="this traj should have SF centered",
                         type=argparse.FileType('r'),
                         required=True)
@@ -351,7 +350,13 @@ if __name__ == "__main__":
                         metavar="list of string",
                         help="THR VAL GLY TYR GLY",
                         type=str,
-                        nargs=5)
+                        nargs="+")
+    parser.add_argument("-SF_seq2",
+                        dest="SF_seq2",
+                        metavar="list of string",
+                        help="THR VAL GLY PHE GLY",
+                        type=str,
+                        nargs="+")
     parser.add_argument("-check_wat",
                         dest="check_wat",
                         choices=["y", "n"],
@@ -363,7 +368,7 @@ if __name__ == "__main__":
                         dest="backend",
                         choices=["cpp", "py"],
                         type=str,
-                        default="cpp",
+                        default="py",
                         help="""choose backend""",
                         )
 
@@ -373,21 +378,26 @@ if __name__ == "__main__":
     xtc_full_max = args.traj.name
     K_name = args.K_name
     cylinderRad = args.cylRAD
-    SF_seq = args.SF_seq
     print("#################################################################################")
     print("PDB top file:", args.top.name)
     print("xtc traj file:", xtc_full_max)
     print("Ion name in this pdb should be:", K_name)
     print("The Voltage in this simulation is: ", args.volt, "mV")
-    print("The sequence of the SF is ", SF_seq)
+    print("The sequence of the SF is ", args.SF_seq, args.SF_seq2)
     print("#################################################################################")
 
     traj_pdb = md.load(top)
     # prepare atom index for cylinder
-    if (args.SF_seq is None):
-        raise ValueError("Please provide -SF_seq")
+    if (args.SF_seq is None or len(args.SF_seq) != 5):
+        raise ValueError("Please provide 5 residue after -SF_seq")
+    if args.SF_seq2 is None:
+        SF_seq2 = []
+    elif len(args.SF_seq2) != 5:
+        raise ValueError("Please provide 5 residue after -SF_seq2")
+    else:
+        SF_seq2 = args.SF_seq2
     print("#################################################################################")
-    S00, S01, S12, S23, S34, S45 = auto_find_SF_index(traj_pdb, SF_seq)
+    S00, S01, S12, S23, S34, S45 = auto_find_SF_index(traj_pdb, args.SF_seq, SF_seq2)
     ion_index = find_K_index(traj_pdb, K_name)
     print("Number of ions found", len(ion_index))
     print("The ion index (0 base):", ion_index)
@@ -409,7 +419,8 @@ if __name__ == "__main__":
     # load xtc iteratively and assign state for each ion (c++)
     print("Assign state to each ion for each frame")
     if args.backend == "cpp":
-        ions_state_dict, wats_state_dict, traj_timestep = assign_state_12345_cpp(xtc_full_max, ion_index, wat_index, cylinderRad, S01, S23, S45)
+        ions_state_dict, wats_state_dict, traj_timestep = assign_state_12345_cpp(xtc_full_max, ion_index, wat_index,
+                                                                                 cylinderRad, S01, S23, S45)
     else:
         ions_state_dict, wats_state_dict, traj_timestep = assign_ion_state_chunk(top=top,
                                                                                  xtc_file=xtc_full_max,
