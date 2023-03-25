@@ -31,6 +31,7 @@ class MyTestCase(unittest.TestCase):
         # print(matched)
 
     def test_auto_find_SF_index_01(self):
+        print("# TEST auto_find_SF_index NaK2K")
         traj_short = md.load("test/01-2POT/fix_c_10ns-pro-2POT.xtc",
                              top="test/01-2POT/02-pro-2POT.pdb")
         S00, S01, S12, S23, S34, S45 = count_ion_SF_cpp.auto_find_SF_index(traj_short)  # 0 based index
@@ -42,17 +43,47 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(S45, [int(i) - 1 for i in "60  196  332  468".split()])
 
     def test_auto_find_SF_index_02(self):
-        """This is a two pore domain potassium ion channel TREK2 (PDB: 4BW5)"""
+        print("# TEST auto_find_SF_index TREK2 PDB 4BW5, chain A,B")
         traj = md.load("test/06-TREK-4BW5/4bw5.pdb")
-        S00, S01, S12, S23, S34, S45 = count_ion_SF_cpp.auto_find_SF_index(traj,
-                                                                           SF_seq="THR ILE GLY TYR GLY".split(),
-                                                                           SF_seq2="THR VAL GLY PHE GLY".split())  # 0 based index
+        S00, S01, S12, S23, S34, S45 = count_ion_SF_cpp.auto_find_SF_index(
+            traj,
+            SF_seq="THR ILE GLY TYR GLY".split(),
+            SF_seq2="THR VAL GLY PHE GLY".split())  # 0 based index
         self.assertEqual(S00, [int(i) - 1 for i in "753 1480 2564 3357".split()])
         self.assertEqual(S01, [int(i) - 1 for i in "741 1469 2552 3346".split()])
         self.assertEqual(S12, [int(i) - 1 for i in "737 1465 2548 3342".split()])
         self.assertEqual(S23, [int(i) - 1 for i in "729 1458 2540 3335".split()])
         self.assertEqual(S34, [int(i) - 1 for i in "722 1451 2533 3328".split()])
         self.assertEqual(S45, [int(i) - 1 for i in "724 1453 2535 3330".split()])
+
+    def test_auto_find_SF_index_03(self):
+        print("# TEST auto_find_SF_index TREK2 from TOM, chain A,A")
+        traj = md.load("test/07-TREK2/TREK2_TOM_up.pdb")
+        S00, S01, S12, S23, S34, S45 = count_ion_SF_cpp.auto_find_SF_index(
+            traj,
+            SF_seq="THR ILE GLY TYR GLY".split(),
+            SF_seq2="THR VAL GLY PHE GLY".split())  # 0 based index
+        self.assertEqual(S00, [int(i) - 1 for i in "1588 3327 5710 7449".split()])
+        self.assertEqual(S01, [int(i) - 1 for i in "1581 3320 5703 7442".split()])
+        self.assertEqual(S12, [int(i) - 1 for i in "1560 3300 5682 7422".split()])
+        self.assertEqual(S23, [int(i) - 1 for i in "1553 3293 5675 7415".split()])
+        self.assertEqual(S34, [int(i) - 1 for i in "1534 3277 5656 7399".split()])
+        self.assertEqual(S45, [int(i) - 1 for i in "1527 3270 5649 7392".split()])
+
+    def test_auto_find_SF_index_04(self):
+        print("# TEST auto_find_SF_index TREK2 from TOM, chain A,B")
+        traj = md.load("test/07-TREK2/TREK2_TOM_up_Chain_AB.pdb")
+        S00, S01, S12, S23, S34, S45 = count_ion_SF_cpp.auto_find_SF_index(
+            traj,
+            SF_seq="THR ILE GLY TYR GLY".split(),
+            SF_seq2="THR VAL GLY PHE GLY".split())  # 0 based index
+        self.assertEqual(S00, [int(i) - 1 for i in "1588 3327 5710 7449".split()])
+        self.assertEqual(S01, [int(i) - 1 for i in "1581 3320 5703 7442".split()])
+        self.assertEqual(S12, [int(i) - 1 for i in "1560 3300 5682 7422".split()])
+        self.assertEqual(S23, [int(i) - 1 for i in "1553 3293 5675 7415".split()])
+        self.assertEqual(S34, [int(i) - 1 for i in "1534 3277 5656 7399".split()])
+        self.assertEqual(S45, [int(i) - 1 for i in "1527 3270 5649 7392".split()])
+
 
     def test_PYSfilter_01(self):
         traj = md.load("test/03-find_SF_from_PDB/04-NaK2K-more/em.pdb")
