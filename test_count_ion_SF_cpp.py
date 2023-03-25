@@ -113,14 +113,14 @@ class MyTestCase(unittest.TestCase):
         S00, S01, S12, S23, S34, S45 = count_ion_SF_cpp.auto_find_SF_index(traj)
         ion_index = count_ion_SF_cpp.find_K_index(traj, K_name="POT")
         wat_index = count_ion_SF_cpp.find_water_O_index(traj)
-        ions_s_dict, wats_s_dict, traj_step = count_ion_SF_cpp.assign_state_12345_py(traj, ion_index, wat_index, 0.25,
+        ions_s_dict, wats_s_dict = count_ion_SF_cpp.assign_state_12345_py(traj, ion_index, wat_index, 0.25,
                                                                                      S01, S23, S45)
         self.assertEqual(ions_s_dict[5960][0:5].tolist(), [5, 5, 5, 5, 5])
         self.assertEqual(ions_s_dict[5961][0:5].tolist(), [1, 1, 1, 1, 5])
         self.assertEqual(ions_s_dict[5962][0:5].tolist(), [1, 1, 1, 1, 1])
         self.assertEqual(ions_s_dict[5963][0:5].tolist(), [3, 3, 3, 3, 3])
         self.assertEqual(ions_s_dict[6068][31:36].tolist(), [4, 5, 5, 5, 5])
-        self.assertAlmostEqual(traj_step, 20.0)
+        #self.assertAlmostEqual(traj_step, 20.0)
 
     def test_backend_time(self):
         xtc = "test/03-find_SF_from_PDB/04-NaK2K-more/fix_atom_c_kpro.xtc"
@@ -144,7 +144,7 @@ class MyTestCase(unittest.TestCase):
             self.assertListEqual(answer1[0][k].tolist(), answer2[0][k].tolist())
 #        for k in answer1[1]:
 #            self.assertListEqual(answer1[1][k].tolist(), answer2[1][k].tolist())
-        self.assertAlmostEqual(answer1[2], answer2[2])  # traj time step (ps/frame)
+        #self.assertAlmostEqual(answer1[2], answer2[2])  # traj time step (ps/frame)
         print("Time comparison ")
         print("PY: %.3f s, CPP %.3f s" % (tick2 - tick1, tick3 - tick2))
         print("C++ speed up %.3f times" % ((tick2 - tick1) / (tick3 - tick2)))
